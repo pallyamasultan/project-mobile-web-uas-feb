@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ujian Mahasiswa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+
+  <!-- ========================= -->
+  <!-- VIEW: LOGIN (Unchanged mostly) -->
+  <!-- ========================= -->
+  <div id="login-view" class="view-container">
+    <div class="login-header">
+      <div class="login-logo-placeholder">
+        <span class="material-icons" style="font-size: 64px; color: #F5C518;">school</span>
+      </div>
+      <h1 class="login-title text-yellow">UNSAP</h1>
+      <p class="login-subtitle">Aplikasi Ujian Mahasiswa</p>
+    </div>
+    <div class="login-form-container">
+      <div class="login-card">
+        <h2 class="card-title">Masuk ke Akun Anda</h2>
+        <div class="input-group">
+          <label>NIM</label>
+          <div class="input-wrapper">
+            <span class="material-icons">person</span>
+            <input type="text" id="input-nim" placeholder="Masukkan NIM">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Tanggal Lahir</label>
+          <div class="input-wrapper">
+            <span class="material-icons">calendar_today</span>
+            <input type="text" id="input-dob" placeholder="DDMMYYYY">
+          </div>
+        </div>
+        <button class="btn-primary w-full mt-4" onclick="handleLogin()">MASUK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- VIEW: DASHBOARD -->
+  <!-- ========================= -->
+  <div id="dashboard-view" class="view-container active">
+    
+    <!-- TAB: HOME -->
+    <div id="tab-home" class="tab-content active">
+      <!-- Top Navy Section -->
+      <div class="top-navy-bg">
+        <!-- Profile Header -->
+        <div class="profile-header-row">
+          <div class="avatar-box">AF</div>
+          <div class="profile-text">
+            <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
+            <p>2024010001</p>
+          </div>
+          <div class="bell-icon"><span class="material-icons">notifications_none</span></div>
+        </div>
+        
+        <!-- 3 Stat Cards -->
+        <div class="stat-cards-row">
+          <div class="stat-card">
+            <h2 class="text-green">5</h2>
+            <p>Berlangsung</p>
+          </div>
+          <div class="stat-card">
+            <h2 class="text-orange">5</h2>
+            <p>Belum Dimulai</p>
+          </div>
+          <div class="stat-card">
+            <h2 class="text-gray">0</h2>
+            <p>Selesai</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="dashboard-body light-bg">
+        <div class="section-header-row">
+          <h3 class="section-title">Ujian Hari Ini</h3>
+          <button class="btn-filter-pill" onclick="openFilterModal()">
+            <span class="material-icons">tune</span> Filter
+          </button>
+        </div>
+
+        <!-- Exam Card: Terlambat -->
+        <div class="exam-card border-red">
+          <div class="exam-card-header">
+            <div class="exam-icon-box bg-red-light text-red">H-0</div>
+            <div class="exam-title-area">
+              <h4>Akuntansi Manajemen</h4>
+              <p>AKT301 · 3 SKS</p>
+            </div>
+            <div class="status-pill pill-red">TERLAMBAT</div>
+          </div>
+          <div class="exam-card-info">
+            <div class="info-left">
+              <p><span class="material-icons">work</span> Akuntansi · Semester 4</p>
+              <p><span class="material-icons">meeting_room</span> Reguler A | Ruang: Ruang A101</p>
+            </div>
+            <div class="info-right">
+              <p><span class="material-icons">schedule</span> Jam Ujian</p>
+              <h4>08:00 - 10:00 WIB</h4>
+            </div>
+          </div>
+          <div class="alert-box alert-red">
+            <span class="material-icons">lock</span>
+            <div class="alert-text">
+              <strong>Akses Dikunci - Terlambat 18 menit</strong>
+              <span>Diperlukan kode dari pengawas untuk masuk.</span>
+            </div>
+          </div>
+          <button class="btn-full btn-red mt-3"><span class="material-icons">lock_open</span> Gunakan Kode Pengawas</button>
+        </div>
+
+        <!-- Exam Card: Berlangsung -->
+        <div class="exam-card border-green mt-4">
+          <div class="exam-card-header">
+            <div class="exam-icon-box bg-green-light text-green">H-0</div>
+            <div class="exam-title-area">
+              <h4>Statistika Bisnis</h4>
+              <p>STB202 · 3 SKS</p>
+            </div>
+            <div class="status-pill pill-green">BERLANGSUNG</div>
+          </div>
+          <div class="exam-card-info">
+            <div class="info-left">
+              <p><span class="material-icons">work</span> Akuntansi · Semester 4</p>
+              <p><span class="material-icons">meeting_room</span> Reguler A | Ruang: Ruang A101</p>
+            </div>
+            <div class="info-right">
+              <p><span class="material-icons">schedule</span> Jam Ujian</p>
+              <h4>10:00 - 12:00 WIB</h4>
+            </div>
+          </div>
+          <button class="btn-full btn-navy mt-3" onclick="startExam()"><span class="material-icons">lock_open</span> MULAI UJIAN</button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+
+    <!-- TAB: UJIAN -->
+    <div id="tab-ujian" class="tab-content">
+      <div class="top-navy-bg">
+        <div class="profile-header-row">
+          <div class="avatar-box">AF</div>
+          <div class="profile-text">
+            <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
+            <p>2024010001</p>
+          </div>
+          <div class="bell-icon"><span class="material-icons">notifications_none</span></div>
+        </div>
+
+        <div class="ujian-title-area mt-4">
+          <p class="subtitle text-light-gray">Semua Jadwal Ujian</p>
+          <h2 class="title-large"><span class="material-icons text-white">assignment</span> Daftar Ujian</h2>
+        </div>
+
+        <div class="status-pills-row mt-3">
+          <div class="pill-dark"><span class="dot green"></span> <b>5</b> Berlangsung</div>
+          <div class="pill-dark"><span class="dot orange"></span> <b>5</b> Menunggu</div>
+          <div class="pill-dark"><span class="dot blue"></span> <b>0</b> Selesai</div>
+        </div>
+      </div>
+
+      <div class="dashboard-body light-bg">
+        <!-- Chips -->
+        <div class="chips-scroll">
+          <div class="chip active">Semua</div>
+          <div class="chip">Hari Ini</div>
+          <div class="chip">Mendatang</div>
+          <div class="chip">Selesai</div>
+        </div>
+
+        <!-- Same Exam Cards as Home for demo -->
+        <div class="exam-card border-red mt-3">
+          <div class="exam-card-header">
+            <div class="exam-icon-box bg-red-light text-red">H-0</div>
+            <div class="exam-title-area">
+              <h4>Akuntansi Manajemen</h4>
+              <p>AKT301 · 3 SKS</p>
+            </div>
+            <div class="status-pill pill-red">TERLAMBAT</div>
+          </div>
+          <div class="exam-card-info">
+            <div class="info-left">
+              <p><span class="material-icons">work</span> Akuntansi · Semester 4</p>
+              <p><span class="material-icons">meeting_room</span> Reguler A | Ruang: Ruang A101</p>
+            </div>
+            <div class="info-right">
+              <p><span class="material-icons">schedule</span> Jam Ujian</p>
+              <h4>08:00 - 10:00 WIB</h4>
+            </div>
+          </div>
+          <div class="alert-box alert-red">
+            <span class="material-icons">lock</span>
+            <div class="alert-text">
+              <strong>Akses Dikunci - Terlambat 18 menit</strong>
+              <span>Diperlukan kode dari pengawas untuk masuk.</span>
+            </div>
+          </div>
+          <button class="btn-full btn-red mt-3"><span class="material-icons">lock_open</span> Gunakan Kode Pengawas</button>
+        </div>
+
+        <div class="exam-card border-green mt-4">
+          <div class="exam-card-header">
+            <div class="exam-icon-box bg-green-light text-green">H-0</div>
+            <div class="exam-title-area">
+              <h4>Statistika Bisnis</h4>
+              <p>STB202 · 3 SKS</p>
+            </div>
+            <div class="status-pill pill-green">BERLANGSUNG</div>
+          </div>
+          <div class="exam-card-info">
+            <div class="info-left">
+              <p><span class="material-icons">work</span> Akuntansi · Semester 4</p>
+              <p><span class="material-icons">meeting_room</span> Reguler A | Ruang: Ruang A101</p>
+            </div>
+            <div class="info-right">
+              <p><span class="material-icons">schedule</span> Jam Ujian</p>
+              <h4>10:00 - 12:00 WIB</h4>
+            </div>
+          </div>
+          <button class="btn-full btn-navy mt-3" onclick="startExam()"><span class="material-icons">lock_open</span> MULAI UJIAN</button>
+        </div>
+        
+        <div class="exam-card border-orange mt-4">
+          <div class="exam-card-header">
+            <div class="exam-icon-box bg-orange-light text-orange">H-0</div>
+            <div class="exam-title-area">
+              <h4>Ekonomi Mikro</h4>
+              <p>EKM201 · 3 SKS</p>
+            </div>
+            <div class="status-pill pill-orange">BELUM DIMULAI</div>
+          </div>
+        </div>
+        <br><br>
+      </div>
+    </div>
+
+    <!-- TAB: RIWAYAT -->
+    <div id="tab-riwayat" class="tab-content">
+      <div class="top-navy-bg">
+        <div class="profile-header-row">
+          <div class="avatar-box">AF</div>
+          <div class="profile-text">
+            <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
+            <p>2024010001</p>
+          </div>
+          <div class="bell-icon"><span class="material-icons">notifications_none</span></div>
+        </div>
+        <div class="ujian-title-area mt-4">
+          <p class="subtitle text-light-gray">Ahmad Fauzi · 2024010001</p>
+          <h2 class="title-large"><span class="material-icons text-white">bar_chart</span> Riwayat Ujian</h2>
+        </div>
+        <button class="btn-outline-white mt-3" onclick="openSemesterModal()" id="btn-semester-riwayat">Semua Semester <span class="material-icons">expand_more</span></button>
+      </div>
+      <div class="dashboard-body light-bg">
+        <div class="stat-cards-row-white mb-4">
+          <div class="stat-card-white">
+            <h2 class="text-green">78</h2>
+            <p>Rata-rata nilai</p>
+          </div>
+          <div class="stat-card-white">
+            <h2 class="text-green">4</h2>
+            <p>Terkumpul ujian</p>
+          </div>
+          <div class="stat-card-white">
+            <h2 class="text-blue">2</h2>
+            <p>Bersih tanpa pelanggaran</p>
+          </div>
+        </div>
+
+        <div class="history-list-card">
+          <div class="score-circle">78</div>
+          <div class="history-list-info">
+            <h4>Akuntansi Manajemen</h4>
+            <p>AKT301 · Semester 4</p>
+            <p class="date"><span class="material-icons">event</span> 14 Juni 2026</p>
+          </div>
+        </div>
+
+        <div class="history-list-card mt-3">
+          <div class="score-circle">85</div>
+          <div class="history-list-info">
+            <h4>Statistika Bisnis</h4>
+            <p>STB202 · Semester 4</p>
+            <p class="date"><span class="material-icons">event</span> 12 Juni 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PROFIL -->
+    <div id="tab-profile" class="tab-content">
+      <div class="top-navy-bg">
+        <div class="profile-header-row justify-between">
+          <div class="flex-row">
+            <div class="avatar-box large">AF</div>
+            <div class="profile-text mt-2">
+              <h2 class="title-large mb-1">Ahmad Fauzi</h2>
+              <p>NIM: 2024010001</p>
+              <div class="tags-row mt-2">
+                <span class="tag-green">Aktif</span>
+                <span class="tag-dark">Akuntansi · Sem 4</span>
+              </div>
+            </div>
+          </div>
+          <div class="bell-icon"><span class="material-icons">share</span></div>
+        </div>
+        <div class="stat-cards-row-dark mt-4">
+          <div class="stat-card-dark">
+            <h2 class="text-yellow">7</h2>
+            <p>Ujian</p>
+          </div>
+          <div class="stat-card-dark">
+            <h2 class="text-yellow">5</h2>
+            <p>Lulus</p>
+          </div>
+          <div class="stat-card-dark">
+            <h2 class="text-yellow">81</h2>
+            <p>Rata-rata</p>
+          </div>
+          <div class="stat-card-dark">
+            <h2 class="text-yellow">48</h2>
+            <p>SKS</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-body light-bg pb-20">
+        <div class="info-card mb-4">
+          <h4 class="info-title">INFORMASI AKADEMIK</h4>
+          <div class="info-row">
+            <div class="info-icon"><span class="material-icons">school</span></div>
+            <div class="info-text">
+              <h5>Program Studi</h5>
+              <p>S1 Akuntansi</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon bg-purple"><span class="material-icons">calendar_today</span></div>
+            <div class="info-text">
+              <h5>Semester & Tahun</h5>
+              <p>Semester 4 · 2025/2026</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon bg-teal"><span class="material-icons">person</span></div>
+            <div class="info-text">
+              <h5>Dosen Wali</h5>
+              <p>Dr. Hendra Kusuma, M.Ak</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card mb-4">
+          <h4 class="info-title">INFORMASI AKUN</h4>
+          <div class="info-row">
+            <div class="info-icon bg-dark"><span class="material-icons">account_circle</span></div>
+            <div class="info-text">
+              <h5>Nama Lengkap</h5>
+              <p>Ahmad Fauzi</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon bg-gray"><span class="material-icons">badge</span></div>
+            <div class="info-text">
+              <h5>NIM</h5>
+              <p>2024010001</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-outline-red w-full" onclick="handleLogout()">
+          <span class="material-icons">logout</span> Keluar
+        </button>
+        <br><br>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" onclick="switchTab('home')" id="nav-item-home">
+        <span class="material-icons">home</span>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('ujian')" id="nav-item-ujian">
+        <span class="material-icons">receipt_long</span>
+        <span>Ujian</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('riwayat')" id="nav-item-riwayat">
+        <span class="material-icons">history</span>
+        <span>Riwayat</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('profile')" id="nav-item-profile">
+        <span class="material-icons">person</span>
+        <span>Profil</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Filter Bottom Sheet Modal -->
+  <div id="filter-modal" class="bottom-sheet-overlay hidden">
+    <div class="bottom-sheet">
+      <h3 class="sheet-title"><span class="material-icons">search</span> Filter Jadwal Ujian</h3>
+      <div class="sheet-body">
+        <div class="input-group">
+          <label>Program Studi</label>
+          <div class="input-wrapper">
+            <select class="custom-select">
+              <option>Semua Prodi</option>
+              <option>Akuntansi</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Semester</label>
+          <div class="input-wrapper">
+            <select class="custom-select">
+              <option>Semua Semester</option>
+              <option>Semester 4</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Kelas / Kelompok</label>
+          <div class="input-wrapper">
+            <select class="custom-select">
+              <option>Semua Kelas</option>
+              <option>Reguler A</option>
+            </select>
+          </div>
+        </div>
+        <div class="sheet-actions mt-4">
+          <button class="btn-outline-red flex-1" onclick="closeFilterModal()">Reset</button>
+          <button class="btn-navy flex-2" onclick="applyFilter()">Terapkan Filter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Semester Bottom Sheet Modal (Riwayat) -->
+  <div id="semester-modal" class="bottom-sheet-overlay hidden" onclick="closeSemesterModal(event)">
+    <div class="bottom-sheet" onclick="event.stopPropagation()">
+      <div class="sheet-header-border">
+        <h3 class="sheet-title mb-0" style="margin-bottom: 0;"><span class="material-icons">event</span> Pilih Semester</h3>
+      </div>
+      <div class="sheet-body">
+        <ul class="semester-list">
+          <li class="active" onclick="selectSemester('Semua Semester')">
+            <span>Semua Semester</span>
+            <span class="material-icons check-icon">check_circle</span>
+          </li>
+          <li onclick="selectSemester('Semester 1')"><span>Semester 1</span></li>
+          <li onclick="selectSemester('Semester 2')"><span>Semester 2</span></li>
+          <li onclick="selectSemester('Semester 3')"><span>Semester 3</span></li>
+          <li onclick="selectSemester('Semester 4')"><span>Semester 4</span></li>
+          <li onclick="selectSemester('Semester 5')"><span>Semester 5</span></li>
+          <li onclick="selectSemester('Semester 6')"><span>Semester 6</span></li>
+          <li onclick="selectSemester('Semester 7')"><span>Semester 7</span></li>
+          <li onclick="selectSemester('Semester 8')"><span>Semester 8</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- VIEW: EXAM (Unchanged) -->
+  <!-- ========================= -->
+  <div id="exam-view" class="view-container">
+    <header class="app-bar">
+      <button class="icon-button text-red" id="btn-exit" onclick="showExitModal()"><span class="material-icons">exit_to_app</span></button>
+      <div class="app-bar-title"><div class="course-badge">AKT301</div></div>
+      <div class="app-bar-actions" id="question-counter">1 / 5</div>
+    </header>
+    <main class="content-area">
+      <div class="card question-card">
+        <div class="card-header dark-header">
+          <span class="header-title text-yellow" id="question-number-display">SOAL 1</span>
+          <span class="header-subtitle">20 poin</span>
+        </div>
+        <div class="card-body"><p id="question-text" class="noselect">Jelaskan perbedaan...</p></div>
+      </div>
+      <div class="card answer-card">
+        <div class="card-header light-header">
+          <span class="header-title text-slate">JAWABAN ANDA</span>
+          <span class="header-subtitle text-green">Auto-save aktif</span>
+        </div>
+        <div class="card-body">
+          <textarea id="answer-input" placeholder="Tuliskan jawaban Anda di sini..." onpaste="return false;"></textarea>
+        </div>
+      </div>
+    </main>
+    <footer class="bottom-bar">
+      <div class="nav-buttons">
+        <button class="icon-button" id="btn-prev" onclick="prevQuestion()" disabled><span class="material-icons">arrow_back_ios</span></button>
+        <button class="icon-button" id="btn-next" onclick="nextQuestion()"><span class="material-icons">arrow_forward_ios</span></button>
+        <button class="icon-button" id="btn-flag" onclick="toggleFlag()"><span class="material-icons">flag</span></button>
+      </div>
+      <button class="btn-submit" onclick="showSubmitModal()">KUMPULKAN</button>
+    </footer>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal" id="modal-content"></div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
