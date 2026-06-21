@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'feature/auth/splash_screen.dart';
 import 'feature/auth/security_screen.dart';
 import 'feature/auth/login_screen.dart';
+import 'feature/auth/biometric_screen.dart';
+import 'feature/auth/geofence_screen.dart';
 import 'feature/dashboard/dashboard_screen.dart';
 
 void main() {
@@ -52,11 +54,37 @@ class _AuthFlowState extends State<AuthFlow> {
         return LoginScreen(
           onNext: () {
             setState(() {
-              _currentScreenIndex = 3;
+              _currentScreenIndex = 3; // Go to Biometric
             });
           },
         );
       case 3:
+        return BiometricScreen(
+          onNext: () {
+            setState(() {
+              _currentScreenIndex = 4; // Go to Geofence
+            });
+          },
+          onBack: () {
+            setState(() {
+              _currentScreenIndex = 2; // Back to Login
+            });
+          },
+        );
+      case 4:
+        return GeofenceScreen(
+          onNext: () {
+            setState(() {
+              _currentScreenIndex = 5; // Go to Dashboard
+            });
+          },
+          onBack: () {
+            setState(() {
+              _currentScreenIndex = 3; // Back to Biometric
+            });
+          },
+        );
+      case 5:
         return DashboardScreen(
           onLogout: () {
             setState(() {

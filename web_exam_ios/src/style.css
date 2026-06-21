@@ -76,11 +76,13 @@ body {
    APP CONTAINER & VIEWS
    ========================================================================= */
 .view-container {
-  display: none;
+  display: none !important;
   min-height: 100vh;
   width: 100vw;
 }
-.view-container.active { display: block; }
+.view-container.active { display: block !important; }
+.view-container.active.flex-col,
+.view-container.active.flex-center { display: flex !important; }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 
@@ -153,6 +155,8 @@ body {
   border-radius: 18px;
   background-color: rgba(255,255,255,0.1);
   display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  position: relative; z-index: 10;
 }
 
 /* Stat Cards in Navy Header */
@@ -393,13 +397,22 @@ body {
 .sheet-title { font-size: 18px; font-weight: 800; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
 .input-group { margin-bottom: 16px; }
 .input-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
-.input-wrapper {
+.input-wrapper, .select-wrapper {
   background: white; border: 1px solid var(--border); border-radius: 12px; padding: 14px; position: relative;
+}
+.input-wrapper {
+  display: flex; align-items: center; gap: 12px;
+}
+.input-wrapper input {
+  border: none; outline: none; background: transparent; width: 100%; font-size: 14px; color: var(--text-main);
+}
+.input-wrapper .material-icons {
+  color: var(--text-slate);
 }
 .custom-select {
   width: 100%; border: none; background: transparent; font-size: 14px; color: var(--text-slate); outline: none; appearance: none;
 }
-.input-wrapper::after { content: '▼'; font-size: 10px; color: var(--text-light); position: absolute; right: 16px; top: 16px; pointer-events: none; }
+.select-wrapper::after { content: '▼'; font-size: 10px; color: var(--text-light); position: absolute; right: 16px; top: 16px; pointer-events: none; }
 .sheet-actions { display: flex; gap: 12px; }
 
 /* Semester List */
@@ -470,3 +483,109 @@ body {
 .btn-text { background: transparent; border: none; color: #3b5998; font-weight: 700; font-size: 14px; cursor: pointer; }
 .rounded-pill { border-radius: 24px !important; }
 .px-4 { padding-left: 20px !important; padding-right: 20px !important; padding-top: 12px !important; padding-bottom: 12px !important;}
+
+/* =========================================================================
+   ANTI-CHEAT PENALTY STYLES
+   ========================================================================= */
+.is-blurred {
+  filter: blur(15px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* OVR-P1: Warning Banner */
+.anti-cheat-banner {
+  position: fixed; top: 20px; left: 5%; right: 5%; width: 90%;
+  background: white; border-radius: 16px; padding: 16px;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+  border-left: 6px solid var(--red);
+  display: flex; flex-direction: column; gap: 12px;
+  z-index: 1000; animation: slideDown 0.3s ease-out;
+}
+@keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+.banner-content { display: flex; gap: 12px; align-items: flex-start; }
+.banner-content strong { color: var(--red); font-size: 14px; display: block; margin-bottom: 4px; }
+.banner-content p { color: var(--text-main); font-size: 12px; margin: 0; }
+.btn-text-red { background: transparent; border: none; color: var(--red); font-weight: 700; font-size: 14px; align-self: flex-end; cursor: pointer; }
+
+/* OVR-P2: Blur Punishment & OVR-P3: Kill Switch */
+.anti-cheat-fullscreen {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.85); /* Dark semi-transparent */
+  z-index: 1001; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: white; text-align: center; padding: 24px;
+}
+.anti-cheat-redscreen {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: #8B0000; /* Solid Dark Red */
+  z-index: 1002; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: white; text-align: center; padding: 24px;
+}
+.icon-giant { font-size: 80px; margin-bottom: 24px; }
+.anti-cheat-fullscreen h2, .anti-cheat-redscreen h2 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.anti-cheat-fullscreen p, .anti-cheat-redscreen p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+.countdown-circle {
+  width: 120px; height: 120px; border-radius: 60px;
+  border: 6px solid var(--orange); margin-top: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; font-weight: 800; color: var(--orange);
+}
+
+/* =========================================================================
+   NEW VIEWS ANIMATIONS (SPLASH, BIOMETRIC, GEOFENCE)
+   ========================================================================= */
+
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.bg-navy { background-color: var(--navy); }
+.text-center { text-align: center; }
+
+/* Biometric */
+.biometric-ring {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(59, 130, 246, 0.5);
+  animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.biometric-ring.delay-1 { animation-delay: 0.6s; }
+.biometric-ring.delay-2 { animation-delay: 1.2s; }
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Geofence */
+.relative { position: relative; }
+.absolute-center { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.overflow-hidden { overflow: hidden; }
+.z-10 { z-index: 10; }
+
+.radar-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 197, 24, 0.3);
+}
+.circle-1 { width: 150px; height: 150px; }
+.circle-2 { width: 300px; height: 300px; border: 1px solid rgba(245, 197, 24, 0.1); }
+.circle-3 { width: 450px; height: 450px; border: 1px dashed rgba(245, 197, 24, 0.05); }
+
+.radar-line {
+  position: absolute;
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.8));
+  top: 50%; left: 50%;
+  transform-origin: 0 50%;
+  animation: radar-spin 3s linear infinite;
+}
+
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

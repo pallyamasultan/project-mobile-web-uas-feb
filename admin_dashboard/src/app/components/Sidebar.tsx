@@ -9,9 +9,11 @@ const navItems = [
   { icon: BookOpen, label: "Menu Kuliah", path: "/kuliah" },
   { icon: Users, label: "Mahasiswa", path: "/mahasiswa" },
   { icon: FileQuestion, label: "Bank Soal", path: "/bank-soal" },
-  { icon: ClipboardList, label: "Ujian", path: "/ujian/buat" },
+  { icon: ClipboardList, label: "Jadwal Ujian", path: "/jadwal-ujian" },
+  { icon: ClipboardList, label: "Buat Ujian", path: "/ujian/buat" },
   { icon: Monitor, label: "Monitoring", path: "/monitoring" },
   { icon: Award, label: "Penilaian", path: "/penilaian" },
+  { icon: FileText, label: "Rekap Nilai", path: "/rekap-nilai" },
   { icon: FileText, label: "Laporan", path: "/laporan" },
   { icon: Settings, label: "Pengaturan", path: "/pengaturan" },
 ];

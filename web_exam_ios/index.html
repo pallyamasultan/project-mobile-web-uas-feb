@@ -13,6 +13,62 @@
 <body>
 
   <!-- ========================= -->
+  <!-- VIEW: SPLASH SCREEN (SCR-M01) -->
+  <!-- ========================= -->
+  <div id="splash-view" class="view-container active bg-navy flex-center flex-col">
+    <div class="splash-logo-box">
+      <span class="material-icons" style="font-size: 80px; color: #F5C518;">school</span>
+      <h1 class="text-white mt-3" style="font-size: 24px; font-weight: 800; letter-spacing: 2px;">UNSAP</h1>
+      <p class="text-light-gray" style="font-size: 14px;">FAKULTAS EKONOMI & BISNIS</p>
+    </div>
+    
+    <div class="splash-loader mt-5">
+      <div class="progress-bar-container" style="width: 200px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+        <div class="progress-fill" id="splash-progress" style="width: 0%; height: 100%; background: #F5C518; transition: width 0.3s;"></div>
+      </div>
+      <p class="text-light-gray mt-2 text-center" style="font-size: 12px;" id="splash-text">Menginisialisasi sistem...</p>
+    </div>
+    <div style="position: absolute; bottom: 20px; font-size: 10px; color: rgba(255,255,255,0.5);">v1.0.0 · Web iOS Edition</div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- VIEW: SECURITY INTEGRITY (SCR-M02) -->
+  <!-- ========================= -->
+  <div id="security-view" class="view-container bg-navy text-white px-4 py-8 flex-col">
+    <div class="text-center mt-5 mb-5">
+      <span class="material-icons text-yellow" style="font-size: 64px;">security</span>
+      <h2 class="mt-3">PEMERIKSAAN KEAMANAN</h2>
+      <p class="text-light-gray mt-2" style="font-size: 14px;">Sistem sedang memverifikasi integritas perangkat Anda...</p>
+    </div>
+
+    <div class="security-checklist bg-white rounded-lg p-4" style="color: #1e293b;">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li class="flex items-center mb-3" id="sec-check-1">
+          <span class="material-icons text-gray-400 mr-2" id="sec-icon-1" style="font-size: 20px;">radio_button_unchecked</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">Jailbreak / Web Inspector</div>
+            <div style="font-size: 12px; color: #64748b;" id="sec-desc-1">Menunggu...</div>
+          </div>
+        </li>
+        <li class="flex items-center mb-3" id="sec-check-2">
+          <span class="material-icons text-gray-400 mr-2" id="sec-icon-2" style="font-size: 20px;">radio_button_unchecked</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">VPN / Proxy Terlarang</div>
+            <div style="font-size: 12px; color: #64748b;" id="sec-desc-2">Menunggu...</div>
+          </div>
+        </li>
+        <li class="flex items-center" id="sec-check-3">
+          <span class="material-icons text-gray-400 mr-2" id="sec-icon-3" style="font-size: 20px;">radio_button_unchecked</span>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">Screen Recording</div>
+            <div style="font-size: 12px; color: #64748b;" id="sec-desc-3">Menunggu...</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ========================= -->
   <!-- VIEW: LOGIN (Unchanged mostly) -->
   <!-- ========================= -->
   <div id="login-view" class="view-container">
@@ -46,9 +102,59 @@
   </div>
 
   <!-- ========================= -->
+  <!-- VIEW: BIOMETRIC (SCR-M04) -->
+  <!-- ========================= -->
+  <div id="biometric-view" class="view-container bg-white flex-col" style="padding-top: 60px;">
+    <div class="text-center px-4">
+      <h2 style="color: #0f172a; font-size: 22px; font-weight: 800;">Verifikasi Kehadiran</h2>
+      <p style="color: #64748b; font-size: 14px; margin-top: 8px;">Gunakan Touch ID atau Face ID untuk mengkonfirmasi bahwa ini benar Anda.</p>
+    </div>
+    
+    <div class="flex-1 flex-center" style="position: relative; min-height: 300px;">
+      <div class="biometric-ring"></div>
+      <div class="biometric-ring delay-1"></div>
+      <div class="biometric-ring delay-2"></div>
+      <div class="biometric-icon-container bg-navy rounded-full flex-center" style="width: 100px; height: 100px; z-index: 10;">
+        <span class="material-icons text-white" style="font-size: 50px;">fingerprint</span>
+      </div>
+    </div>
+    
+    <div class="px-4 pb-8 text-center">
+      <p id="biometric-status" style="color: #3b82f6; font-weight: 600; margin-bottom: 20px;">Ketuk ikon sidik jari di atas</p>
+      <button class="btn-text" onclick="skipBiometricForNow()" style="color: #94a3b8;">Lewati (Hanya untuk Demo)</button>
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- VIEW: GEOFENCE (SCR-M05) -->
+  <!-- ========================= -->
+  <div id="geofence-view" class="view-container bg-navy text-white flex-col relative overflow-hidden">
+    <!-- Radar Animation Background -->
+    <div class="radar-bg absolute-center w-full h-full flex-center">
+      <div class="radar-circle circle-1"></div>
+      <div class="radar-circle circle-2"></div>
+      <div class="radar-circle circle-3"></div>
+      <div class="radar-line"></div>
+    </div>
+    
+    <div class="z-10 flex-col flex-1 px-4 py-8 justify-between">
+      <div class="text-center mt-4">
+        <h2 style="font-size: 22px; font-weight: 800;">Pemindaian Lokasi</h2>
+        <p class="text-light-gray mt-2" style="font-size: 14px;">Memastikan Anda berada di area kampus FEB UNSAP...</p>
+      </div>
+      
+      <div class="bg-white rounded-lg p-4" style="color: #1e293b; text-align: center;">
+        <span class="material-icons text-blue-500 mb-2" style="font-size: 32px;" id="geo-icon">location_searching</span>
+        <h3 id="geo-status-title" style="font-weight: 700;">Mencari Sinyal GPS</h3>
+        <p id="geo-status-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Akurasi: Menghitung... m</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= -->
   <!-- VIEW: DASHBOARD -->
   <!-- ========================= -->
-  <div id="dashboard-view" class="view-container active">
+  <div id="dashboard-view" class="view-container">
     
     <!-- TAB: HOME -->
     <div id="tab-home" class="tab-content active">
@@ -61,7 +167,7 @@
             <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
             <p>2024010001</p>
           </div>
-          <div class="bell-icon"><span class="material-icons">notifications_none</span></div>
+          <div class="bell-icon" onclick="openNotifModal()"><span class="material-icons">notifications_none</span></div>
         </div>
         
         <!-- 3 Stat Cards -->
@@ -155,7 +261,7 @@
             <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
             <p>2024010001</p>
           </div>
-          <div class="bell-icon"><span class="material-icons">notifications_none</span></div>
+          <div class="bell-icon" onclick="openNotifModal()"><span class="material-icons">notifications_none</span></div>
         </div>
 
         <div class="ujian-title-area mt-4">
@@ -254,7 +360,7 @@
             <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
             <p>2024010001</p>
           </div>
-          <div class="bell-icon"><span class="material-icons">notifications_none</span></div>
+          <div class="bell-icon" onclick="openNotifModal()"><span class="material-icons">notifications_none</span></div>
         </div>
         <div class="ujian-title-area mt-4">
           <p class="subtitle text-light-gray">Ahmad Fauzi · 2024010001</p>
@@ -408,13 +514,13 @@
   </div>
 
   <!-- Filter Bottom Sheet Modal -->
-  <div id="filter-modal" class="bottom-sheet-overlay hidden">
-    <div class="bottom-sheet">
+  <div id="filter-modal" class="bottom-sheet-overlay hidden" onclick="closeFilterModal()">
+    <div class="bottom-sheet" onclick="event.stopPropagation()">
       <h3 class="sheet-title"><span class="material-icons">search</span> Filter Jadwal Ujian</h3>
       <div class="sheet-body">
         <div class="input-group">
           <label>Program Studi</label>
-          <div class="input-wrapper">
+          <div class="select-wrapper">
             <select class="custom-select">
               <option>Semua Prodi</option>
               <option>Akuntansi</option>
@@ -423,7 +529,7 @@
         </div>
         <div class="input-group">
           <label>Semester</label>
-          <div class="input-wrapper">
+          <div class="select-wrapper">
             <select class="custom-select">
               <option>Semua Semester</option>
               <option>Semester 4</option>
@@ -432,7 +538,7 @@
         </div>
         <div class="input-group">
           <label>Kelas / Kelompok</label>
-          <div class="input-wrapper">
+          <div class="select-wrapper">
             <select class="custom-select">
               <option>Semua Kelas</option>
               <option>Reguler A</option>
@@ -442,6 +548,38 @@
         <div class="sheet-actions mt-4">
           <button class="btn-outline-red flex-1" onclick="closeFilterModal()">Reset</button>
           <button class="btn-navy flex-2" onclick="applyFilter()">Terapkan Filter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Bottom Sheet Modal -->
+  <div id="notif-modal" class="bottom-sheet-overlay hidden" onclick="closeNotifModal()">
+    <div class="bottom-sheet" onclick="event.stopPropagation()">
+      <div class="sheet-header-border flex-row justify-between">
+        <h3 class="sheet-title mb-0" style="margin-bottom: 0;"><span class="material-icons text-blue">notifications</span> Notifikasi</h3>
+        <span class="tag-gold" style="font-size: 12px; padding: 4px 8px;">2 Baru</span>
+      </div>
+      <div class="sheet-body mt-3">
+        <div class="history-list-card mb-2" style="border-top: 4px solid var(--blue);">
+          <div class="score-circle" style="border-color: var(--blue); color: var(--blue);">
+            <span class="material-icons">info</span>
+          </div>
+          <div class="history-list-info">
+            <h4>Jadwal Ujian Baru</h4>
+            <p>Ujian Statistika Bisnis telah ditambahkan</p>
+            <p class="date"><span class="material-icons">schedule</span> Baru saja</p>
+          </div>
+        </div>
+        <div class="history-list-card" style="border-top: 4px solid var(--red);">
+          <div class="score-circle" style="border-color: var(--red); color: var(--red);">
+            <span class="material-icons">warning</span>
+          </div>
+          <div class="history-list-info">
+            <h4>Peringatan Sistem</h4>
+            <p>Sistem mendeteksi percobaan login dari perangkat baru.</p>
+            <p class="date"><span class="material-icons">schedule</span> 1 Jam yang lalu</p>
+          </div>
         </div>
       </div>
     </div>
@@ -507,6 +645,39 @@
       </div>
       <button class="btn-submit" onclick="showSubmitModal()">KUMPULKAN</button>
     </footer>
+
+    <!-- ANTI-CHEAT OVERLAYS -->
+    <!-- OVR-P1: Warning Popup -->
+    <div id="warning-overlay" class="anti-cheat-banner hidden">
+      <div class="banner-content">
+        <span class="material-icons text-red">warning</span>
+        <div>
+          <strong>PERINGATAN: Aktivitas mencurigakan terdeteksi!</strong>
+          <p>Pelanggaran Anda dicatat. Jangan keluar dari tab ujian.</p>
+        </div>
+      </div>
+      <button class="btn-text-red" onclick="dismissWarning()">Saya Mengerti</button>
+    </div>
+
+    <!-- OVR-P2: Blur Punishment -->
+    <div id="blur-overlay" class="anti-cheat-fullscreen hidden">
+      <span class="material-icons icon-giant text-orange">gavel</span>
+      <h2>SANKSI PELANGGARAN</h2>
+      <p>Layar Anda dikunci sementara karena mendeteksi kecurangan.</p>
+      <div class="countdown-circle">
+        <span id="blur-countdown">60</span>
+      </div>
+      <p class="mt-4">Waktu ujian Anda akan tetap berjalan.</p>
+    </div>
+
+    <!-- OVR-P3: Kill Switch (Red Screen) -->
+    <div id="kill-overlay" class="anti-cheat-redscreen hidden">
+      <span class="material-icons icon-giant">do_not_disturb_alt</span>
+      <h2>UJIAN DIAKHIRI PAKSA</h2>
+      <p>Sesi ujian Anda telah diakhiri karena pelanggaran berulang.</p>
+      <p>Hubungi dosen atau pengawas untuk informasi lebih lanjut.</p>
+      <button class="btn-outline-white mt-4" onclick="handleLogout()">Kembali ke Login</button>
+    </div>
   </div>
 
   <div id="modal-overlay" class="modal-overlay hidden">

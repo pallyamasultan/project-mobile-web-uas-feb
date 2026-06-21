@@ -3,7 +3,11 @@
 // ==========================================
 
 const views = {
+  splash: document.getElementById('splash-view'),
+  security: document.getElementById('security-view'),
   login: document.getElementById('login-view'),
+  biometric: document.getElementById('biometric-view'),
+  geofence: document.getElementById('geofence-view'),
   dashboard: document.getElementById('dashboard-view'),
   exam: document.getElementById('exam-view')
 };
@@ -31,8 +35,46 @@ window.handleLogin = () => {
     return;
   }
 
-  // Simulate authentication success
-  navigateTo('dashboard');
+  // Simulate authentication success, go to Biometric Phase
+  navigateTo('biometric');
+  
+  // Simulate native Biometric Prompt after a short delay
+  setTimeout(() => {
+    const status = document.getElementById('biometric-status');
+    if (status) status.innerText = 'Memindai...';
+    
+    // Auto simulate success after 2 seconds
+    setTimeout(() => {
+      if (views.biometric.classList.contains('active')) {
+        skipBiometricForNow();
+      }
+    }, 2000);
+  }, 500);
+};
+
+window.skipBiometricForNow = () => {
+  // Go to Geofence Phase
+  navigateTo('geofence');
+  
+  // Simulate Geofence Scanning
+  setTimeout(() => {
+    const geoStatus = document.getElementById('geo-status-title');
+    const geoDesc = document.getElementById('geo-status-desc');
+    const geoIcon = document.getElementById('geo-icon');
+    
+    if (geoStatus) {
+      geoStatus.innerText = 'Lokasi Ditemukan';
+      geoStatus.style.color = '#22c55e';
+      geoDesc.innerText = 'Akurasi: 12m (Area Kampus)';
+      geoIcon.innerText = 'check_circle';
+      geoIcon.classList.replace('text-blue-500', 'text-green-500');
+    }
+    
+    // Proceed to Dashboard after success
+    setTimeout(() => {
+      navigateTo('dashboard');
+    }, 1500);
+  }, 2500);
 };
 
 window.handleLogout = () => {
@@ -43,6 +85,56 @@ window.handleLogout = () => {
     navigateTo('login');
   }
 };
+
+// INITIALIZATION FLOW
+function initApp() {
+  // Start with splash screen
+  navigateTo('splash');
+  
+  // Simulate loading progress
+  let progress = 0;
+  const progressFill = document.getElementById('splash-progress');
+  
+  const interval = setInterval(() => {
+    progress += Math.random() * 20;
+    if (progress > 100) progress = 100;
+    if (progressFill) progressFill.style.width = `${progress}%`;
+    
+    if (progress === 100) {
+      clearInterval(interval);
+      // Move to Security check
+      setTimeout(runSecurityCheck, 500);
+    }
+  }, 300);
+}
+
+function runSecurityCheck() {
+  navigateTo('security');
+  
+  const checks = [
+    { id: 1, text: 'Aman', delay: 1000 },
+    { id: 2, text: 'Aman', delay: 2000 },
+    { id: 3, text: 'Aman', delay: 3000 }
+  ];
+  
+  checks.forEach(check => {
+    setTimeout(() => {
+      const desc = document.getElementById(`sec-desc-${check.id}`);
+      const icon = document.getElementById(`sec-icon-${check.id}`);
+      if (desc && icon) {
+        desc.innerText = check.text;
+        desc.style.color = '#22c55e';
+        icon.innerText = 'check_circle';
+        icon.classList.replace('text-gray-400', 'text-green-500');
+      }
+    }, check.delay);
+  });
+  
+  // Finish security check and go to Login
+  setTimeout(() => {
+    navigateTo('login');
+  }, 4000);
+}
 
 // ==========================================
 // DASHBOARD LOGIC (TABS)
@@ -81,6 +173,21 @@ window.openFilterModal = () => {
   document.getElementById('filter-modal').classList.remove('hidden');
 };
 
+window.closeFilterModal = () => {
+  document.getElementById('filter-modal').classList.add('hidden');
+};
+
+// ==========================================
+// NOTIFICATION MODAL LOGIC
+// ==========================================
+window.openNotifModal = () => {
+  document.getElementById('notif-modal').classList.remove('hidden');
+};
+
+window.closeNotifModal = () => {
+  document.getElementById('notif-modal').classList.add('hidden');
+};
+
 window.toggleFlag = () => {
   const btn = document.getElementById('btn-flag');
   btn.classList.toggle('text-red');
@@ -108,6 +215,13 @@ window.closeModal = () => {
 
 window.submitExam = () => {
   closeModal();
+  
+  // ANTI-CHEAT: Set flag to false
+  isExamRunning = false;
+  if (document.exitFullscreen) {
+    document.exitFullscreen().catch(e => console.log(e));
+  }
+
   // Simulate loading and submission
   setTimeout(() => {
     alert("Ujian berhasil dikumpulkan!");
@@ -119,10 +233,6 @@ window.submitExam = () => {
     // Refresh to riwayat or home tab
     switchTab('home');
   }, 500);
-};
-
-window.closeFilterModal = () => {
-  document.getElementById('filter-modal').classList.add('hidden');
 };
 
 window.applyFilter = () => {
@@ -170,8 +280,121 @@ window.selectSemester = (semesterName) => {
 window.startExam = () => {
   // Initialize exam state
   initExam();
-  navigateTo('exam');
+  document.getElementById('dashboard-view').classList.remove('active');
+  document.getElementById('exam-view').classList.add('active');
+  
+  // ANTI-CHEAT: Set flag to true
+  isExamRunning = true;
+  violationCount = 0; // reset
+  
+  // Enter full screen if possible (deterrent)
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(e => console.log(e));
+  }
 };
+
+initApp();
+
+// ==========================================
+// ANTI-CHEAT ENGINE (WEB iOS)
+// ==========================================
+let isExamRunning = false;
+let violationCount = 0;
+let blurInterval = null;
+
+// 1. Deteksi Ganti Tab / Minimize
+document.addEventListener('visibilitychange', () => {
+  if (isExamRunning && document.visibilityState === 'hidden') {
+    handleViolation('Tab Switch / Minimize');
+  }
+});
+
+// 2. Cegah Klik Kanan (Context Menu)
+document.addEventListener('contextmenu', (e) => {
+  if (isExamRunning) {
+    e.preventDefault();
+  }
+});
+
+// 3. Cegah Copy, Cut, Paste
+document.addEventListener('copy', (e) => { if (isExamRunning) e.preventDefault(); });
+document.addEventListener('cut', (e) => { if (isExamRunning) e.preventDefault(); });
+document.addEventListener('paste', (e) => { if (isExamRunning) e.preventDefault(); });
+
+// 4. Cegah Keyboard Shortcuts (Deterrent: F12, Ctrl+C, dll)
+document.addEventListener('keydown', (e) => {
+  if (!isExamRunning) return;
+  // Prevent F12
+  if (e.key === 'F12') e.preventDefault();
+  // Prevent Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+S, Ctrl+P
+  if ((e.ctrlKey || e.metaKey) && ['c', 'v', 'x', 's', 'p'].includes(e.key.toLowerCase())) {
+    e.preventDefault();
+  }
+});
+
+function handleViolation(reason) {
+  violationCount++;
+  console.warn(`Pelanggaran terdeteksi: ${reason}. Total pelanggaran: ${violationCount}`);
+
+  if (violationCount === 1) {
+    // Hukuman 1: Warning Popup (OVR-P1)
+    document.getElementById('warning-overlay').classList.remove('hidden');
+    // Hilang otomatis setelah 10 detik jika tidak di-dismiss
+    setTimeout(() => {
+      document.getElementById('warning-overlay').classList.add('hidden');
+    }, 10000);
+  } else if (violationCount === 2) {
+    // Hukuman 2: Blur 60s (OVR-P2)
+    triggerBlurPenalty();
+  } else if (violationCount >= 3) {
+    // Hukuman 3: Kill Switch (OVR-P3)
+    triggerKillSwitch();
+  }
+}
+
+window.dismissWarning = () => {
+  document.getElementById('warning-overlay').classList.add('hidden');
+};
+
+function triggerBlurPenalty() {
+  const blurOverlay = document.getElementById('blur-overlay');
+  const mainContent = document.querySelector('.content-area');
+  const appBar = document.querySelector('.app-bar');
+  const bottomBar = document.querySelector('.bottom-bar');
+  
+  blurOverlay.classList.remove('hidden');
+  mainContent.classList.add('is-blurred');
+  appBar.classList.add('is-blurred');
+  bottomBar.classList.add('is-blurred');
+
+  let timeLeft = 60;
+  document.getElementById('blur-countdown').innerText = timeLeft;
+
+  if (blurInterval) clearInterval(blurInterval);
+  blurInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById('blur-countdown').innerText = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(blurInterval);
+      blurOverlay.classList.add('hidden');
+      mainContent.classList.remove('is-blurred');
+      appBar.classList.remove('is-blurred');
+      bottomBar.classList.remove('is-blurred');
+    }
+  }, 1000);
+}
+
+function triggerKillSwitch() {
+  // Matikan ujian
+  isExamRunning = false;
+  if (blurInterval) clearInterval(blurInterval);
+
+  // Tampilkan layar merah permanen
+  document.getElementById('kill-overlay').classList.remove('hidden');
+  
+  // Submit paksa apa yang sudah dijawab (Simulasi)
+  console.log("Submit paksa jawaban karena Kill Switch...");
+}
 
 
 // ==========================================

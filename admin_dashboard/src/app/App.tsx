@@ -10,6 +10,8 @@ import { MenuKuliah } from "./pages/MenuKuliah";
 import { Laporan } from "./pages/Laporan";
 import { Penilaian } from "./pages/Penilaian";
 import { Pengaturan } from "./pages/Pengaturan";
+import { JadwalUjian } from "./pages/JadwalUjian";
+import { RekapNilai } from "./pages/RekapNilai";
 
 // Mock authentication logic for now
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -27,10 +29,11 @@ export default function App() {
           <Route path="kuliah" element={<MenuKuliah />} />
           <Route path="mahasiswa" element={<Mahasiswa />} />
           <Route path="bank-soal" element={<BankSoal />} />
-          <Route path="ujian" element={<div style={{padding: "24px"}}>Daftar Ujian (Coming Soon)</div>} />
+          <Route path="jadwal-ujian" element={<JadwalUjian />} />
           <Route path="ujian/buat" element={<BuatUjian />} />
           <Route path="monitoring" element={<Monitoring />} />
           <Route path="penilaian" element={<Penilaian />} />
+          <Route path="rekap-nilai" element={<RekapNilai />} />
           <Route path="laporan" element={<Laporan />} />
           <Route path="pengaturan" element={<Pengaturan />} />
         </Route>

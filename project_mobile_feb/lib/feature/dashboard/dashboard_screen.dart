@@ -30,6 +30,82 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _updatePages();
   }
 
+  void _showNotifications() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+        ),
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 24),
+            const Icon(
+              Icons.notifications_off_outlined,
+              size: 64,
+              color: Colors.grey,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Belum ada Notifikasi',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0B1E3D),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Anda akan menerima pemberitahuan di sini\njika ada ujian baru atau pengumuman.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 14,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF0B1E3D),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'Tutup',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _updatePages() {
     _pages = [
       _HomeTab(
@@ -334,17 +410,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(7),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.07),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.white.withOpacity(0.1)),
-                    ),
-                    child: const Icon(
-                      Icons.notifications_none,
-                      color: Colors.white,
-                      size: 18,
+                  GestureDetector(
+                    onTap: _showNotifications,
+                    child: Container(
+                      padding: const EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.07),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.white.withOpacity(0.1)),
+                      ),
+                      child: const Icon(
+                        Icons.notifications_none,
+                        color: Colors.white,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ],
