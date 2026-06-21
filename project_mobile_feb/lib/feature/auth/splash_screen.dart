@@ -211,109 +211,42 @@ class _SplashScreenState extends State<SplashScreen>
                                     shape: BoxShape.circle,
                                     gradient: RadialGradient(
                                       colors: [
-                                        const Color(
-                                          0xFFEAB308,
-                                        ).withOpacity(0.15),
+                                        const Color(0xFFEAB308).withOpacity(0.2),
                                         Colors.transparent,
                                       ],
                                       stops: const [0.0, 0.7],
                                     ),
                                   ),
                                 ),
-                                // Logo card
+                                // Logo card (now a circular card with UNSAP logo)
                                 Container(
                                   width: 110,
                                   height: 110,
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFF1A3A6E),
-                                        Color(0xFF0E2550),
-                                      ],
-                                    ),
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: const Color(
-                                        0xFFEAB308,
-                                      ).withOpacity(0.6),
+                                      color: const Color(0xFFEAB308).withOpacity(0.6),
                                       width: 2,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: const Color(
-                                          0xFFEAB308,
-                                        ).withOpacity(0.25),
+                                        color: const Color(0xFFEAB308).withOpacity(0.25),
                                         blurRadius: 24,
                                       ),
                                     ],
                                   ),
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        top: 0,
-                                        left: 0,
-                                        right: 0,
-                                        child: Container(
-                                          height: 4,
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(14),
-                                              topRight: Radius.circular(14),
-                                            ),
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0xFFB8860B),
-                                                Color(0xFFF5C518),
-                                                Color(0xFFB8860B),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const Text(
-                                              'FEB',
-                                              style: TextStyle(
-                                                color: Color(0xFFF5C518),
-                                                fontFamily: 'serif',
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.w800,
-                                                letterSpacing: 3,
-                                                height: 1,
-                                              ),
-                                            ),
-                                            Container(
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                    vertical: 6,
-                                                  ),
-                                              width: 50,
-                                              height: 1,
-                                              color: const Color(
-                                                0xFFF5C518,
-                                              ).withOpacity(0.5),
-                                            ),
-                                            const Text(
-                                              'UNSAP',
-                                              style: TextStyle(
-                                                color: Color(0xFFF5C518),
-                                                fontFamily: 'serif',
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                                letterSpacing: 2,
-                                                height: 1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                  child: Image.asset(
+                                    'assets/images/unsap_logo.png',
+                                    fit: BoxFit.contain,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Icon(
+                                        Icons.school,
+                                        size: 50,
+                                        color: Color(0xFF0B1E3D),
+                                      );
+                                    },
                                   ),
                                 ),
                               ],

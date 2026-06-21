@@ -353,7 +353,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Expanded(
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 250),
-              child: _pages[_currentIndex],
+              child: SizedBox(
+                key: ValueKey<int>(_currentIndex),
+                width: double.infinity,
+                height: double.infinity,
+                child: _pages[_currentIndex],
+              ),
             ),
           ),
         ],

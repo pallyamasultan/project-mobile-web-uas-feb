@@ -316,11 +316,14 @@ class _UjianPageState extends State<UjianPage> {
                                         color: Color(0xFF475569),
                                       ),
                                       const SizedBox(width: 4),
-                                      Text(
-                                        '${exam.prodi} · ${exam.semester}',
-                                        style: const TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0xFF334155),
+                                      Expanded(
+                                        child: Text(
+                                          '${exam.prodi} · ${exam.semester}',
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFF334155),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ],
@@ -334,12 +337,15 @@ class _UjianPageState extends State<UjianPage> {
                                         color: Color(0xFF475569),
                                       ),
                                       const SizedBox(width: 4),
-                                      Text(
-                                        '${exam.kelas} | Ruang: ${exam.room}',
-                                        style: const TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0xFF334155),
-                                          fontWeight: FontWeight.w600,
+                                      Expanded(
+                                        child: Text(
+                                          '${exam.kelas} | Ruang: ${exam.room}',
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFF334155),
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ],
