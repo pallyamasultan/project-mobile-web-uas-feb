@@ -1,0 +1,22 @@
+# Flutter/Dart/Pub
+.dart_tool/
+.packages
+build/
+.pub-cache/
+.pub/
+*.DS_Store
+.idea/
+*.iml
+.vscode/
+
+# Node/Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+.env.local
+
+# Gemini Logs
+.gemini/
