@@ -42,14 +42,14 @@ class _RiwayatPageState extends State<RiwayatPage> {
                   padding: EdgeInsets.all(24.0),
                   child: Row(
                     children: [
-                      Icon(Icons.calendar_month, color: Color(0xFF0B1E3D)),
+                      Icon(Icons.calendar_month, color: Color(0xFFF97316)),
                       SizedBox(width: 12),
                       Text(
                         'Pilih Semester',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0B1E3D),
+                          color: Color(0xFFF97316),
                         ),
                       ),
                     ],
@@ -103,7 +103,7 @@ class _RiwayatPageState extends State<RiwayatPage> {
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF0B1E3D), Color(0xFF162D52)],
+              colors: [Color(0xFFF97316), Color(0xFFEA580C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),

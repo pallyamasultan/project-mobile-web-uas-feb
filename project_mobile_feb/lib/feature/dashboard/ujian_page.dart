@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../exam/late_entry_screen.dart';
 import '../exam/exam_screen.dart';
 import '../../model/exam_model.dart';
-import '../exam/exam_screen.dart';
-
 class UjianPage extends StatefulWidget {
   final String? prodi;
   final String? semester;
@@ -22,8 +20,9 @@ class _UjianPageState extends State<UjianPage> {
   Widget build(BuildContext context) {
     List<ExamModel> filteredExams = dummyExams.where((e) {
       if (widget.prodi != null && e.prodi != widget.prodi) return false;
-      if (widget.semester != null && e.semester != widget.semester)
+      if (widget.semester != null && e.semester != widget.semester) {
         return false;
+      }
       if (widget.kelas != null && e.kelas != widget.kelas) return false;
       return true;
     }).toList();
@@ -41,7 +40,7 @@ class _UjianPageState extends State<UjianPage> {
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF0B1E3D), Color(0xFF162D52)],
+              colors: [Color(0xFFF97316), Color(0xFFEA580C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -188,14 +187,14 @@ class _UjianPageState extends State<UjianPage> {
         margin: const EdgeInsets.only(right: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: active ? const Color(0xFF0B1E3D) : Colors.transparent,
+          color: active ? const Color(0xFFF97316) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
-              color: active ? const Color(0xFFF5C518) : const Color(0xFF94A3B8),
+              color: active ? Colors.white : const Color(0xFF94A3B8),
               fontWeight: active ? FontWeight.bold : FontWeight.normal,
               fontSize: 12,
             ),
@@ -485,7 +484,7 @@ class _UjianPageState extends State<UjianPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isLate
                       ? const Color(0xFF991B1B)
-                      : const Color(0xFF0B1E3D),
+                      : const Color(0xFFF97316),
                   minimumSize: const Size(double.infinity, 44),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -497,14 +496,14 @@ class _UjianPageState extends State<UjianPage> {
                   children: [
                     Icon(
                       isLate ? Icons.lock_outline : Icons.lock_open,
-                      color: isLate ? Colors.white : const Color(0xFFF5C518),
+                      color: Colors.white,
                       size: 16,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       isLate ? 'Gunakan Kode Pengawas' : 'MULAI UJIAN',
                       style: TextStyle(
-                        color: isLate ? Colors.white : const Color(0xFFF5C518),
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -66,7 +66,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0B1E3D),
+                color: Color(0xFFF97316),
               ),
             ),
             const SizedBox(height: 8),
@@ -86,7 +86,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0B1E3D),
+                  backgroundColor: const Color(0xFFF97316),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -232,7 +232,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF0B1E3D),
+                            backgroundColor: const Color(0xFFF97316),
                             padding: const EdgeInsets.symmetric(vertical: 14),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -241,7 +241,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: const Text(
                             'Terapkan Filter',
                             style: TextStyle(
-                              color: Color(0xFFF5C518),
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -325,7 +325,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFF0B1E3D), Color(0xFF162D52)],
+                  colors: [Color(0xFFF97316), Color(0xFFEA580C)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -337,11 +337,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     height: 40,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF1A3A6E), Color(0xFF2563EB)],
+                        colors: [Color(0xFFFFEDD5), Colors.white],
                       ),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: const Color(0xFFF5C518).withOpacity(0.45),
+                        color: Colors.white.withOpacity(0.45),
                         width: 1.5,
                       ),
                     ),
@@ -349,7 +349,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Text(
                         'AF',
                         style: TextStyle(
-                          color: Color(0xFFF5C518),
+                          color: Color(0xFFF97316),
                           fontSize: 14,
                           fontWeight: FontWeight.w800,
                         ),
@@ -378,20 +378,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color(
-                                  0xFFF5C518,
-                                ).withOpacity(0.15),
+                                color: Colors.white.withOpacity(0.15),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: const Color(
-                                    0xFFF5C518,
-                                  ).withOpacity(0.28),
+                                  color: Colors.white.withOpacity(0.28),
                                 ),
                               ),
                               child: const Text(
                                 'Akuntansi · Sem 4',
                                 style: TextStyle(
-                                  color: Color(0xFFF5C518),
+                                  color: Colors.white,
                                   fontSize: 9,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -456,7 +452,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           currentIndex: _currentIndex,
           onTap: _onItemTapped,
           backgroundColor: Colors.white,
-          selectedItemColor: const Color(0xFF0B1E3D),
+          selectedItemColor: const Color(0xFFF97316),
           unselectedItemColor: const Color(0xFF94A3B8),
           showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
@@ -573,10 +569,10 @@ class _HomeTab extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: (prodi != null || semester != null || kelas != null)
-                        ? const Color(0xFF0B1E3D)
+                        ? const Color(0xFFF97316)
                         : Colors.white,
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFF0B1E3D)),
+                    border: Border.all(color: const Color(0xFFF97316)),
                   ),
                   child: Row(
                     children: [
@@ -586,7 +582,7 @@ class _HomeTab extends StatelessWidget {
                         color:
                             (prodi != null || semester != null || kelas != null)
                             ? Colors.white
-                            : const Color(0xFF0B1E3D),
+                            : const Color(0xFFF97316),
                       ),
                       const SizedBox(width: 4),
                       Text(
@@ -597,7 +593,7 @@ class _HomeTab extends StatelessWidget {
                                   semester != null ||
                                   kelas != null)
                               ? Colors.white
-                              : const Color(0xFF0B1E3D),
+                              : const Color(0xFFF97316),
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
                         ),
@@ -958,7 +954,7 @@ class _HomeTab extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isLate
                           ? const Color(0xFF991B1B)
-                          : const Color(0xFF0B1E3D),
+                          : const Color(0xFFF97316),
                       minimumSize: const Size(double.infinity, 44),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -972,7 +968,7 @@ class _HomeTab extends StatelessWidget {
                           isLate ? Icons.lock_outline : Icons.lock_open,
                           color: isLate
                               ? Colors.white
-                              : const Color(0xFFF5C518),
+                              : Colors.white,
                           size: 16,
                         ),
                         const SizedBox(width: 8),
@@ -981,7 +977,7 @@ class _HomeTab extends StatelessWidget {
                           style: TextStyle(
                             color: isLate
                                 ? Colors.white
-                                : const Color(0xFFF5C518),
+                                : Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

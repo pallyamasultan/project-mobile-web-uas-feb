@@ -131,8 +131,7 @@ class _SecurityScreenState extends State<SecurityScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            stops: [0.0, 0.6, 1.0],
-            colors: [Color(0xFF0B1E3D), Color(0xFF091629), Color(0xFF060F1E)],
+            colors: [Color(0xFFF97316), Color(0xFFEA580C), Color(0xFFC2410C)],
           ),
         ),
         child: SafeArea(
@@ -313,7 +312,7 @@ class _SecurityScreenState extends State<SecurityScreen>
                         Text(
                           '$_progress%',
                           style: const TextStyle(
-                            color: Color(0xFFF5C518),
+                            color: Colors.white,
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                           ),
@@ -340,15 +339,15 @@ class _SecurityScreenState extends State<SecurityScreen>
                               borderRadius: BorderRadius.circular(2.5),
                               gradient: const LinearGradient(
                                 colors: [
-                                  Color(0xFFB8860B),
-                                  Color(0xFFF5C518),
-                                  Color(0xFFFFE066),
+                                  Colors.white,
+                                  Colors.white,
+                                  Colors.white,
                                 ],
                               ),
                               boxShadow: [
                                 BoxShadow(
                                   color: const Color(
-                                    0xFFF5C518,
+                                    0xFFFFFFFF,
                                   ).withOpacity(0.5),
                                   blurRadius: 8,
                                 ),
@@ -427,7 +426,7 @@ class _StatusIcon extends StatelessWidget {
         ),
         child: const CircularProgressIndicator(
           strokeWidth: 1.5,
-          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFF5C518)),
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
       );
     }
@@ -460,7 +459,7 @@ class _StatusText extends StatelessWidget {
         break;
       case CheckStatus.checking:
         text = 'Memeriksa...';
-        color = const Color(0xFFF5C518);
+        color = Colors.white;
         break;
       case CheckStatus.pass:
         text = 'Tidak Terdeteksi';
@@ -534,7 +533,7 @@ class _ShieldAnimationWidgetState extends State<_ShieldAnimationWidget>
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: const Color(
-                            0xFFF5C518,
+                            0xFFFFFFFF,
                           ).withOpacity(opacity * 0.3),
                         ),
                       ),
@@ -554,10 +553,10 @@ class _ShieldAnimationWidgetState extends State<_ShieldAnimationWidget>
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [Color(0xFF1A3A6E), Color(0xFF0E2550)],
+                      colors: [Color(0xFFF97316), Color(0xFFEA580C)],
                     ),
                     border: Border.all(
-                      color: const Color(0xFFF5C518),
+                      color: Colors.white,
                       width: 2,
                     ),
                     borderRadius: const BorderRadius.only(
@@ -568,7 +567,7 @@ class _ShieldAnimationWidgetState extends State<_ShieldAnimationWidget>
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFFF5C518).withOpacity(0.2),
+                        color: Colors.white.withOpacity(0.2),
                         blurRadius: 16,
                       ),
                     ],

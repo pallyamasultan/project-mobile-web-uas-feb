@@ -20,7 +20,7 @@ class ProfilPage extends StatelessWidget {
           ),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF0B1E3D), Color(0xFF162D52)],
+              colors: [Color(0xFFF97316), Color(0xFFEA580C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -46,7 +46,7 @@ class ProfilPage extends StatelessWidget {
                       child: Text(
                         'AF',
                         style: TextStyle(
-                          color: Color(0xFFF5C518),
+                          color: Color(0xFFF97316),
                           fontSize: 26,
                           fontWeight: FontWeight.w800,
                         ),
@@ -141,7 +141,7 @@ class ProfilPage extends StatelessWidget {
               Icons.account_circle,
               'Nama Lengkap',
               'Ahmad Fauzi',
-              const Color(0xFF0B1E3D),
+              const Color(0xFFF97316),
             ),
             _buildMenuRow(
               Icons.badge,
@@ -216,7 +216,7 @@ class ProfilPage extends StatelessWidget {
             Text(
               val,
               style: const TextStyle(
-                color: Color(0xFFF5C518),
+                color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),

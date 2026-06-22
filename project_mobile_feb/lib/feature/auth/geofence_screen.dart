@@ -219,7 +219,7 @@ class _GeofenceScreenState extends State<GeofenceScreen>
                 child: ElevatedButton(
                   onPressed: allValid ? widget.onNext : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF5C518),
+                    backgroundColor: const Color(0xFFF97316),
                     disabledBackgroundColor: Colors.white.withOpacity(0.1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -232,7 +232,7 @@ class _GeofenceScreenState extends State<GeofenceScreen>
                         'LANJUTKAN',
                         style: TextStyle(
                           color: allValid
-                              ? const Color(0xFF0B1E3D)
+                              ? Colors.white
                               : Colors.white.withOpacity(0.3),
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -243,7 +243,7 @@ class _GeofenceScreenState extends State<GeofenceScreen>
                         const SizedBox(width: 8),
                         const Icon(
                           Icons.check_circle,
-                          color: Color(0xFF0B1E3D),
+                          color: Colors.white,
                           size: 20,
                         ),
                       ],

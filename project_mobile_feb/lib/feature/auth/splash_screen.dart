@@ -11,6 +11,42 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+class DiagonalPill extends StatelessWidget {
+  final double width;
+  final double height;
+  final double top;
+  final double left;
+  final double angle;
+
+  const DiagonalPill({
+    super.key,
+    required this.width,
+    required this.height,
+    required this.top,
+    required this.left,
+    this.angle = -pi / 5,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: top,
+      left: left,
+      child: Transform.rotate(
+        angle: angle,
+        child: Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(100),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _ChecklistItem {
   final String id;
   final String label;
@@ -147,31 +183,19 @@ class _SplashScreenState extends State<SplashScreen>
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.0, 0.6, 1.0],
-            colors: [Color(0xFF0B1E3D), Color(0xFF091629), Color(0xFF060F1E)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFF97316), Color(0xFFEA580C)], // Orange-500 to Orange-600
           ),
         ),
         child: Stack(
           children: [
-            // Stars
-            ..._stars.map(
-              (star) => Positioned(
-                left: MediaQuery.of(context).size.width * star.dx,
-                top: MediaQuery.of(context).size.height * star.dy,
-                child: Container(
-                  width: _random.nextDouble() * 2 + 1,
-                  height: _random.nextDouble() * 2 + 1,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(
-                      _random.nextDouble() * 0.4 + 0.1,
-                    ),
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ),
+            // Background Diagonal Pills (GuruInovatif Style)
+            const DiagonalPill(width: 300, height: 60, top: -20, left: -50),
+            const DiagonalPill(width: 250, height: 50, top: 80, left: -100),
+            const DiagonalPill(width: 400, height: 80, top: 250, left: 150),
+            const DiagonalPill(width: 200, height: 40, top: 350, left: 250),
+            const DiagonalPill(width: 300, height: 60, top: 600, left: -50),
 
             SafeArea(
               child: Padding(
@@ -211,7 +235,7 @@ class _SplashScreenState extends State<SplashScreen>
                                     shape: BoxShape.circle,
                                     gradient: RadialGradient(
                                       colors: [
-                                        const Color(0xFFEAB308).withOpacity(0.2),
+                                        Colors.white.withOpacity(0.3),
                                         Colors.transparent,
                                       ],
                                       stops: const [0.0, 0.7],
@@ -227,12 +251,12 @@ class _SplashScreenState extends State<SplashScreen>
                                     color: Colors.white,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: const Color(0xFFEAB308).withOpacity(0.6),
+                                      color: Colors.white.withOpacity(0.8),
                                       width: 2,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: const Color(0xFFEAB308).withOpacity(0.25),
+                                        color: Colors.black.withOpacity(0.15),
                                         blurRadius: 24,
                                       ),
                                     ],
@@ -244,7 +268,7 @@ class _SplashScreenState extends State<SplashScreen>
                                       return const Icon(
                                         Icons.school,
                                         size: 50,
-                                        color: Color(0xFF0B1E3D),
+                                        color: Color(0xFFF97316),
                                       );
                                     },
                                   ),
@@ -306,7 +330,7 @@ class _SplashScreenState extends State<SplashScreen>
                               Text(
                                 '$_progress%',
                                 style: const TextStyle(
-                                  color: Color(0xFFF5C518),
+                                  color: Colors.white,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -334,16 +358,14 @@ class _SplashScreenState extends State<SplashScreen>
                                     borderRadius: BorderRadius.circular(3),
                                     gradient: const LinearGradient(
                                       colors: [
-                                        Color(0xFFB8860B),
-                                        Color(0xFFF5C518),
-                                        Color(0xFFFFE066),
+                                        Colors.white54,
+                                        Colors.white,
+                                        Colors.white,
                                       ],
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: const Color(
-                                          0xFFF5C518,
-                                        ).withOpacity(0.6),
+                                        color: Colors.white.withOpacity(0.4),
                                         blurRadius: 8,
                                       ),
                                     ],
@@ -455,9 +477,7 @@ class _SplashScreenState extends State<SplashScreen>
                                             strokeWidth: 1.5,
                                             valueColor:
                                                 AlwaysStoppedAnimation<Color>(
-                                                  const Color(
-                                                    0xFFF5C518,
-                                                  ).withOpacity(0.8),
+                                                  Colors.white.withOpacity(0.8),
                                                 ),
                                           ),
                                         ),

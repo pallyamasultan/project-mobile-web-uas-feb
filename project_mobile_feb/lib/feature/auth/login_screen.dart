@@ -11,6 +11,44 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+import 'dart:math';
+
+class DiagonalPill extends StatelessWidget {
+  final double width;
+  final double height;
+  final double top;
+  final double left;
+  final double angle;
+
+  const DiagonalPill({
+    super.key,
+    required this.width,
+    required this.height,
+    required this.top,
+    required this.left,
+    this.angle = -pi / 5,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: top,
+      left: left,
+      child: Transform.rotate(
+        angle: angle,
+        child: Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(100),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
   final TextEditingController _nimController = TextEditingController();
@@ -145,15 +183,21 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1E3D),
+      backgroundColor: const Color(0xFFF97316),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height,
           ),
               child: IntrinsicHeight(
-                child: Column(
+                child: Stack(
                   children: [
+                    // Background Pills for Header
+                    const DiagonalPill(width: 250, height: 50, top: -20, left: -50),
+                    const DiagonalPill(width: 300, height: 60, top: 120, left: 200),
+                    const DiagonalPill(width: 150, height: 40, top: 220, left: -20),
+                    Column(
+                      children: [
                     // Top Header
                     Container(
                       padding: EdgeInsets.only(
@@ -188,11 +232,11 @@ class _LoginScreenState extends State<LoginScreen>
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: const Color(0xFFF5C518).withOpacity(0.5),
+                                      color: Colors.black.withOpacity(0.05),
                                       spreadRadius: 3,
                                     ),
                                     BoxShadow(
-                                      color: const Color(0xFFF5C518).withOpacity(0.2),
+                                      color: Colors.black.withOpacity(0.1),
                                       blurRadius: 24,
                                     ),
                                   ],
@@ -204,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     return const Icon(
                                       Icons.school,
                                       size: 50,
-                                      color: Color(0xFF0B1E3D),
+                                      color: Color(0xFFF97316),
                                     );
                                   },
                                 ),
@@ -229,7 +273,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   gradient: const LinearGradient(
                                     colors: [
                                       Colors.transparent,
-                                      Color(0xFFF5C518),
+                                      Colors.white.withOpacity(0.6),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -272,8 +316,8 @@ class _LoginScreenState extends State<LoginScreen>
                           decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(28),
-                              topRight: Radius.circular(28),
+                              topLeft: Radius.circular(50),
+                              topRight: Radius.circular(50),
                             ),
                             boxShadow: [
                               BoxShadow(
@@ -289,7 +333,7 @@ class _LoginScreenState extends State<LoginScreen>
                               const Text(
                                 'Masuk',
                                 style: TextStyle(
-                                  color: Color(0xFF0B1E3D),
+                                  color: Color(0xFFF97316),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -329,7 +373,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color: _nimFocused
-                                            ? const Color(0xFF0B1E3D).withOpacity(0.35)
+                                            ? const Color(0xFFF97316).withOpacity(0.5)
                                             : Colors.black.withOpacity(0.1),
                                         width: _nimFocused ? 1.5 : 1,
                                       ),
@@ -444,7 +488,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color: _dobFocused
-                                            ? const Color(0xFF0B1E3D).withOpacity(0.35)
+                                            ? const Color(0xFFF97316).withOpacity(0.5)
                                             : Colors.black.withOpacity(0.1),
                                         width: _dobFocused ? 1.5 : 1,
                                       ),
@@ -534,24 +578,24 @@ class _LoginScreenState extends State<LoginScreen>
                                   width: double.infinity,
                                   clipBehavior: Clip.hardEdge,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
+                                    borderRadius: BorderRadius.circular(100),
                                     gradient: _loading
                                         ? null
                                         : const LinearGradient(
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight,
                                             colors: [
-                                              Color(0xFF0B1E3D),
-                                              Color(0xFF162D52),
+                                              Color(0xFFF97316),
+                                              Color(0xFFEA580C),
                                             ],
                                           ),
-                                    color: _loading ? const Color(0xFF1E3A6E) : null,
+                                    color: _loading ? const Color(0xFFFB923C) : null,
                                     boxShadow: _loading
                                         ? null
                                         : [
                                             BoxShadow(
                                               color: const Color(
-                                                0xFF0B1E3D,
+                                                0xFFF97316,
                                               ).withOpacity(0.35),
                                               blurRadius: 16,
                                               offset: const Offset(0, 4),
@@ -594,8 +638,8 @@ class _LoginScreenState extends State<LoginScreen>
                                                   shape: BoxShape.circle,
                                                   border: Border.all(
                                                     color: const Color(
-                                                      0xFFF5C518,
-                                                    ).withOpacity(0.3),
+                                                      Colors.white,
+                                                    ).withOpacity(0.5),
                                                     width: 2.5,
                                                   ),
                                                 ),
@@ -603,7 +647,7 @@ class _LoginScreenState extends State<LoginScreen>
                                                   strokeWidth: 2.5,
                                                   valueColor:
                                                       AlwaysStoppedAnimation<Color>(
-                                                        Color(0xFFF5C518),
+                                                        Colors.white,
                                                       ),
                                                   backgroundColor: Colors.transparent,
                                                 ),
@@ -611,7 +655,7 @@ class _LoginScreenState extends State<LoginScreen>
                                             : const Text(
                                                 'MASUK',
                                                 style: TextStyle(
-                                                  color: Color(0xFFF5C518),
+                                                  color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w700,
                                                   letterSpacing: 2,
