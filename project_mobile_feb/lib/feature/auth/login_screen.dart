@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:math';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onNext;
@@ -10,8 +11,6 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
-import 'dart:math';
 
 class DiagonalPill extends StatelessWidget {
   final double width;
@@ -270,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 height: 1.5,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
-                                  gradient: const LinearGradient(
+                                  gradient: LinearGradient(
                                     colors: [
                                       Colors.transparent,
                                       Colors.white.withOpacity(0.6),
@@ -637,9 +636,7 @@ class _LoginScreenState extends State<LoginScreen>
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   border: Border.all(
-                                                    color: const Color(
-                                                      Colors.white,
-                                                    ).withOpacity(0.5),
+                                                  color: Colors.white.withOpacity(0.5),
                                                     width: 2.5,
                                                   ),
                                                 ),
@@ -790,10 +787,12 @@ class _LoginScreenState extends State<LoginScreen>
                       ),
                     ),
                   ],
-                ),
-              ),
-            ),
-          ),
-    );
+                    ), // end Column
+                  ], // end Stack children
+                ), // end Stack
+              ), // end IntrinsicHeight
+            ), // end ConstrainedBox
+          ), // end SingleChildScrollView
+    ); // end Scaffold
   }
 }
