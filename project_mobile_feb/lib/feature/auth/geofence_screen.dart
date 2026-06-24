@@ -219,7 +219,7 @@ class _GeofenceScreenState extends State<GeofenceScreen>
                 child: ElevatedButton(
                   onPressed: allValid ? widget.onNext : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF97316),
+                    backgroundColor: const Color(0xFF090722),
                     disabledBackgroundColor: Colors.white.withOpacity(0.1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),

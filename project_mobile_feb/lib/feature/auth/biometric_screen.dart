@@ -77,7 +77,7 @@ class _BiometricScreenState extends State<BiometricScreen>
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Color(0xFFF97316),
+            color: Color(0xFF090722),
             size: 20,
           ),
           onPressed: widget.onBack,
@@ -92,7 +92,7 @@ class _BiometricScreenState extends State<BiometricScreen>
               const Text(
                 'VERIFIKASI IDENTITAS',
                 style: TextStyle(
-                  color: Color(0xFFF97316),
+                  color: Color(0xFF090722),
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
                   letterSpacing: 1.2,
@@ -131,7 +131,7 @@ class _BiometricScreenState extends State<BiometricScreen>
                               shape: BoxShape.circle,
                               color: _isSuccess
                                   ? Colors.green.withOpacity(0.2)
-                                  : const Color(0xFFF97316).withOpacity(
+                                  : const Color(0xFF090722).withOpacity(
                                       0.2 - (_pulseController.value * 0.1),
                                     ),
                             ),
@@ -149,7 +149,7 @@ class _BiometricScreenState extends State<BiometricScreen>
                               shape: BoxShape.circle,
                               color: _isSuccess
                                   ? Colors.green.withOpacity(0.3)
-                                  : const Color(0xFFF97316).withOpacity(
+                                  : const Color(0xFF090722).withOpacity(
                                       0.4 - (_pulseController.value * 0.2),
                                     ),
                             ),
@@ -162,13 +162,13 @@ class _BiometricScreenState extends State<BiometricScreen>
                         decoration: BoxDecoration(
                           color: _isSuccess
                               ? Colors.green
-                              : const Color(0xFFF97316),
+                              : const Color(0xFF090722),
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
                               color: _isSuccess
                                   ? Colors.green.withOpacity(0.4)
-                                  : const Color(0xFFF97316).withOpacity(0.3),
+                                  : const Color(0xFF090722).withOpacity(0.3),
                               blurRadius: 15,
                               offset: const Offset(0, 5),
                             ),
@@ -200,7 +200,7 @@ class _BiometricScreenState extends State<BiometricScreen>
                   color: _isSuccess
                       ? Colors.green
                       : (_isScanning
-                            ? const Color(0xFFF97316)
+                            ? const Color(0xFF090722)
                             : Colors.grey.shade700),
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -262,17 +262,14 @@ class _BiometricScreenState extends State<BiometricScreen>
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF97316),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/profile.jpg'),
+                          fit: BoxFit.cover,
+                        ),
                         borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'AF',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
+                        border: Border.all(
+                          color: const Color(0xFF090722).withOpacity(0.1),
+                          width: 1,
                         ),
                       ),
                     ),
@@ -281,7 +278,7 @@ class _BiometricScreenState extends State<BiometricScreen>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Ahmad Fauzi',
+                          'Pallyama Sultan',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -313,7 +310,7 @@ class _BiometricScreenState extends State<BiometricScreen>
       width: 10,
       height: 10,
       decoration: BoxDecoration(
-        color: isActive ? const Color(0xFFF97316) : Colors.grey.shade300,
+        color: isActive ? const Color(0xFF090722) : Colors.grey.shade300,
         shape: BoxShape.circle,
       ),
     );

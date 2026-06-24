@@ -131,7 +131,7 @@ class _SecurityScreenState extends State<SecurityScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFFF97316), Color(0xFFEA580C), Color(0xFFC2410C)],
+            colors: [Color(0xFF090722), Color(0xFFEE9108), Color(0xFFEE9108)],
           ),
         ),
         child: SafeArea(
@@ -553,7 +553,7 @@ class _ShieldAnimationWidgetState extends State<_ShieldAnimationWidget>
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [Color(0xFFF97316), Color(0xFFEA580C)],
+                      colors: [Color(0xFF090722), Color(0xFFEE9108)],
                     ),
                     border: Border.all(
                       color: Colors.white,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
+import '../widget/diagonal_pill.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onNext;
@@ -10,42 +11,6 @@ class LoginScreen extends StatefulWidget {
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class DiagonalPill extends StatelessWidget {
-  final double width;
-  final double height;
-  final double top;
-  final double left;
-  final double angle;
-
-  const DiagonalPill({
-    super.key,
-    required this.width,
-    required this.height,
-    required this.top,
-    required this.left,
-    this.angle = -pi / 5,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      top: top,
-      left: left,
-      child: Transform.rotate(
-        angle: angle,
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.15),
-            borderRadius: BorderRadius.circular(100),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class _LoginScreenState extends State<LoginScreen>
@@ -182,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF97316),
+      backgroundColor: const Color(0xFF090722),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -247,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     return const Icon(
                                       Icons.school,
                                       size: 50,
-                                      color: Color(0xFFF97316),
+                                      color: Color(0xFF090722),
                                     );
                                   },
                                 ),
@@ -332,7 +297,7 @@ class _LoginScreenState extends State<LoginScreen>
                               const Text(
                                 'Masuk',
                                 style: TextStyle(
-                                  color: Color(0xFFF97316),
+                                  color: Color(0xFF090722),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -372,7 +337,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color: _nimFocused
-                                            ? const Color(0xFFF97316).withOpacity(0.5)
+                                            ? const Color(0xFF090722).withOpacity(0.5)
                                             : Colors.black.withOpacity(0.1),
                                         width: _nimFocused ? 1.5 : 1,
                                       ),
@@ -487,7 +452,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
                                         color: _dobFocused
-                                            ? const Color(0xFFF97316).withOpacity(0.5)
+                                            ? const Color(0xFF090722).withOpacity(0.5)
                                             : Colors.black.withOpacity(0.1),
                                         width: _dobFocused ? 1.5 : 1,
                                       ),
@@ -584,17 +549,17 @@ class _LoginScreenState extends State<LoginScreen>
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight,
                                             colors: [
-                                              Color(0xFFF97316),
-                                              Color(0xFFEA580C),
+                                              Color(0xFF090722),
+                                              Color(0xFFEE9108),
                                             ],
                                           ),
-                                    color: _loading ? const Color(0xFFFB923C) : null,
+                                    color: _loading ? const Color(0xFFF5B553) : null,
                                     boxShadow: _loading
                                         ? null
                                         : [
                                             BoxShadow(
                                               color: const Color(
-                                                0xFFF97316,
+                                                0xFF090722,
                                               ).withOpacity(0.35),
                                               blurRadius: 16,
                                               offset: const Offset(0, 4),

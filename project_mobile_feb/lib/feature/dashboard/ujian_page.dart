@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../exam/late_entry_screen.dart';
 import '../exam/exam_screen.dart';
 import '../../model/exam_model.dart';
+import '../widget/diagonal_pill.dart';
 class UjianPage extends StatefulWidget {
   final String? prodi;
   final String? semester;
@@ -33,149 +34,214 @@ class _UjianPageState extends State<UjianPage> {
     int belum = filteredExams.where((e) => e.status == 'BELUM DIMULAI').length;
     int selesai = filteredExams.where((e) => e.status == 'SELESAI').length;
 
-    return Column(
+    return Stack(
       children: [
-        // Header
+        // Background Header
         Container(
-          padding: const EdgeInsets.all(16),
+          height: 240,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFFF97316), Color(0xFFEA580C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
           ),
+          child: Stack(
+            children: [
+              const DiagonalPill(width: 250, height: 40, top: -10, left: -50),
+              const DiagonalPill(width: 300, height: 50, top: 100, left: 200),
+              const DiagonalPill(width: 150, height: 30, top: 180, left: 20),
+              SafeArea(
+                bottom: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                        child: const Icon(Icons.person, color: Colors.white),
+                      ),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'Hi, Ahmad Fauzi',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Temukan Jadwal Ujian Anda',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.8),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        icon: const Icon(Icons.notifications_none, color: Colors.white),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Main Content
+        SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (widget.prodi != null ||
-                  widget.semester != null ||
-                  widget.kelas != null)
-                Text(
-                  '${widget.prodi ?? ''} ${widget.prodi != null ? '·' : ''} ${widget.semester ?? ''} ${widget.semester != null ? '·' : ''} ${widget.kelas ?? ''}',
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
-                    fontSize: 11,
-                  ),
-                )
-              else
-                Text(
-                  'Semua Jadwal Ujian',
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
-                    fontSize: 11,
-                  ),
-                ),
-              const SizedBox(height: 2),
-              const Text(
-                '📋 Daftar Ujian',
-                style: TextStyle(
+              const SizedBox(height: 90), // Spacer below header content
+              
+              // Floating Card
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.stars, color: Color(0xFFF59E0B), size: 24),
+                        const SizedBox(width: 8),
+                        const Text(
+                          'Ayo Kejar Prestasimu!',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1E293B),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Icon(Icons.school, color: Color(0xFFF59E0B), size: 24),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildStatCol('Berlangsung', '$berlangsung', const Color(0xFF22C55E), Icons.play_circle_fill),
+                        _buildStatCol('Menunggu', '$belum', const Color(0xFFF59E0B), Icons.access_time_filled),
+                        _buildStatCol('Selesai', '$selesai', const Color(0xFF3B82F6), Icons.check_circle),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  _buildStatChip(
-                    'Berlangsung',
-                    '$berlangsung',
-                    const Color(0xFF22C55E),
-                  ),
-                  const SizedBox(width: 8),
-                  _buildStatChip('Menunggu', '$belum', const Color(0xFFF59E0B)),
-                  const SizedBox(width: 8),
-                  _buildStatChip(
-                    'Selesai',
-                    '$selesai',
-                    const Color(0xFF60A5FA),
-                  ),
-                ],
+              const SizedBox(height: 16),
+
+              // Filters
+              Container(
+                height: 50,
+                color: Colors.transparent,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                  children: [
+                    _buildFilterChip('Semua'),
+                    _buildFilterChip('Hari Ini'),
+                    _buildFilterChip('Mendatang'),
+                    _buildFilterChip('Selesai'),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
 
-        // Filters
-        Container(
-          height: 50,
-          color: Colors.white,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            children: [
-              _buildFilterChip('Semua'),
-              _buildFilterChip('Hari Ini'),
-              _buildFilterChip('Mendatang'),
-              _buildFilterChip('Selesai'),
-            ],
-          ),
-        ),
-
-        // List
-        Expanded(
-          child: filteredExams.isEmpty
-              ? const Center(
+              const Padding(
+                padding: EdgeInsets.fromLTRB(20, 16, 20, 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    'Tidak ada ujian untuk jadwal ini.',
-                    style: TextStyle(color: Colors.grey),
+                    'Daftar Ujian',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1E293B),
+                    ),
                   ),
-                )
-              : ListView(
-                  padding: const EdgeInsets.all(16),
-                  children: filteredExams.map((e) {
-                    Color statusColor = e.status == 'TERLAMBAT'
-                        ? const Color(0xFFEF4444)
-                        : e.status == 'BERLANGSUNG'
-                        ? const Color(0xFF22C55E)
-                        : const Color(0xFFF59E0B);
-                    return _buildUjianCard(
-                      context,
-                      e,
-                      statusColor,
-                      isLate: e.status == 'TERLAMBAT',
-                    );
-                  }).toList(),
                 ),
+              ),
+
+              // List
+              Expanded(
+                child: filteredExams.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'Tidak ada ujian untuk jadwal ini.',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      )
+                    : ListView(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        children: filteredExams.map((e) {
+                          Color statusColor = e.status == 'TERLAMBAT'
+                              ? const Color(0xFFEF4444)
+                              : e.status == 'BERLANGSUNG'
+                              ? const Color(0xFF22C55E)
+                              : const Color(0xFFF59E0B);
+                          return _buildUjianCard(
+                            context,
+                            e,
+                            statusColor,
+                            isLate: e.status == 'TERLAMBAT',
+                          );
+                        }).toList(),
+                      ),
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildStatChip(String label, String val, Color color) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.08),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 6,
-            height: 6,
-            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+  Widget _buildStatCol(String label, String val, Color color, IconData icon) {
+    return Column(
+      children: [
+        Icon(icon, color: color, size: 28),
+        const SizedBox(height: 4),
+        Text(
+          val,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF1E293B),
           ),
-          const SizedBox(width: 6),
-          Text(
-            '$val ',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 11,
-            ),
+        ),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 12,
+            color: Color(0xFF64748B),
           ),
-          Text(
-            label,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 11,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

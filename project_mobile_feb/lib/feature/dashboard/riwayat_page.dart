@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/diagonal_pill.dart';
 
 class RiwayatPage extends StatefulWidget {
   const RiwayatPage({super.key});
@@ -49,7 +50,7 @@ class _RiwayatPageState extends State<RiwayatPage> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFFF97316),
+                          color: Color(0xFF1E293B),
                         ),
                       ),
                     ],
@@ -69,11 +70,11 @@ class _RiwayatPageState extends State<RiwayatPage> {
                           sem,
                           style: TextStyle(
                             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                            color: isSelected ? const Color(0xFF2563EB) : const Color(0xFF334155),
+                            color: isSelected ? const Color(0xFFF97316) : const Color(0xFF334155),
                           ),
                         ),
                         trailing: isSelected 
-                            ? const Icon(Icons.check_circle, color: Color(0xFF2563EB))
+                            ? const Icon(Icons.check_circle, color: Color(0xFFF97316))
                             : null,
                         onTap: () {
                           setState(() {
@@ -95,103 +96,132 @@ class _RiwayatPageState extends State<RiwayatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        // Header
+        // Background Header
         Container(
+          height: 180,
           width: double.infinity,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           decoration: const BoxDecoration(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             gradient: LinearGradient(
               colors: [Color(0xFFF97316), Color(0xFFEA580C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Text(
-                'Ahmad Fauzi · 2024010001',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontSize: 11,
-                ),
-              ),
-              const SizedBox(height: 2),
-              const Text(
-                '📊 Riwayat Ujian',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 12),
-              GestureDetector(
-                onTap: _showSemesterPicker,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.white.withOpacity(0.15)),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        _selectedSemester,
-                        style: const TextStyle(color: Colors.white, fontSize: 12),
+              const DiagonalPill(width: 150, height: 30, top: -10, left: -20),
+              const DiagonalPill(width: 250, height: 50, top: 80, left: 200),
+              SafeArea(
+                bottom: false,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Pallyama Sultan · 2024010001',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.5),
+                        fontSize: 11,
                       ),
-                      const SizedBox(width: 8),
-                      const Icon(
-                        Icons.keyboard_arrow_down,
+                    ),
+                    const SizedBox(height: 2),
+                    const Text(
+                      '📊 Riwayat Ujian',
+                      style: TextStyle(
                         color: Colors.white,
-                        size: 16,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: _showSemesterPicker,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.white.withOpacity(0.15)),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              _selectedSemester,
+                              style: const TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                            const SizedBox(width: 8),
+                            const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
 
-        // Summary Bar
-        Container(
-          padding: const EdgeInsets.all(16),
-          color: Colors.white,
-          child: Row(
+        // Main Content
+        SafeArea(
+          child: Column(
             children: [
-              _buildSummaryStat(
-                'Rata-rata',
-                '78',
-                'nilai',
-                const Color(0xFF16A34A),
+              const SizedBox(height: 100), // Spacer below header content
+              
+              // Summary Bar (Floating Card style)
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    _buildSummaryStat(
+                      'Rata-rata',
+                      '78',
+                      'nilai',
+                      const Color(0xFF16A34A),
+                    ),
+                    const SizedBox(width: 8),
+                    _buildSummaryStat(
+                      'Terkumpul',
+                      '4',
+                      'ujian',
+                      const Color(0xFFF97316),
+                    ),
+                    const SizedBox(width: 8),
+                    _buildSummaryStat(
+                      'Bersih',
+                      '2',
+                      'tanpa pelanggaran',
+                      const Color(0xFF3B82F6),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(width: 8),
-              _buildSummaryStat(
-                'Terkumpul',
-                '4',
-                'ujian',
-                const Color(0xFF16A34A),
-              ),
-              const SizedBox(width: 8),
-              _buildSummaryStat(
-                'Bersih',
-                '2',
-                'tanpa pelanggaran',
-                const Color(0xFF2563EB),
-              ),
-            ],
-          ),
-        ),
+              const SizedBox(height: 16),
 
-        // List (Simplified for now)
+              // List (Simplified for now)
         Expanded(
           child: ListView(
             padding: const EdgeInsets.all(16),
@@ -212,6 +242,9 @@ class _RiwayatPageState extends State<RiwayatPage> {
                 0,
                 85,
               ),
+            ],
+          ),
+        ),
             ],
           ),
         ),

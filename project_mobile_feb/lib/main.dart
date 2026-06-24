@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Aplikasi Ujian FEB UNSAP',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFF97316)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF090722)),
         useMaterial3: true,
       ),
       home: const AuthFlow(),

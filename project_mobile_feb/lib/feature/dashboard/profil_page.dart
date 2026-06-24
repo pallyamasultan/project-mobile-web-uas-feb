@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/diagonal_pill.dart';
 
 class ProfilPage extends StatelessWidget {
   final VoidCallback onLogout;
@@ -19,26 +20,31 @@ class ProfilPage extends StatelessWidget {
             bottom: 28,
           ),
           decoration: const BoxDecoration(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             gradient: LinearGradient(
               colors: [Color(0xFFF97316), Color(0xFFEA580C)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
-          child: Column(
+          child: Stack(
             children: [
-              Row(
+              const DiagonalPill(width: 200, height: 40, top: -20, left: -40),
+              const DiagonalPill(width: 250, height: 50, top: 120, left: 150),
+              SafeArea(
+                bottom: false,
+                child: Column(
+                  children: [
+                    Row(
                 children: [
                   Container(
                     width: 66,
                     height: 66,
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF1A3A6E), Color(0xFF2563EB)],
-                      ),
+                      color: Colors.white.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: const Color(0xFFF5C518).withOpacity(0.55),
+                        color: Colors.white.withOpacity(0.55),
                         width: 2.5,
                       ),
                     ),
@@ -46,7 +52,7 @@ class ProfilPage extends StatelessWidget {
                       child: Text(
                         'AF',
                         style: TextStyle(
-                          color: Color(0xFFF97316),
+                          color: Colors.white,
                           fontSize: 26,
                           fontWeight: FontWeight.w800,
                         ),
@@ -102,10 +108,13 @@ class ProfilPage extends StatelessWidget {
                   const SizedBox(width: 8),
                   _buildQuickStat('48', 'SKS'),
                 ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
 
         // Informasi Akademik (Simplified for now)
         const SizedBox(height: 16),

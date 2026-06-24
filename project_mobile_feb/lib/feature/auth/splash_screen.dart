@@ -185,7 +185,7 @@ class _SplashScreenState extends State<SplashScreen>
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFFF97316), Color(0xFFEA580C)], // Orange-500 to Orange-600
+            colors: [Color(0xFF090722), Color(0xFFEE9108)], // Dark Blue to Orange theme
           ),
         ),
         child: Stack(
@@ -268,7 +268,7 @@ class _SplashScreenState extends State<SplashScreen>
                                       return const Icon(
                                         Icons.school,
                                         size: 50,
-                                        color: Color(0xFFF97316),
+                                        color: Color(0xFF090722),
                                       );
                                     },
                                   ),
