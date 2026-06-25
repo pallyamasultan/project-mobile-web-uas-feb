@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ujian Mahasiswa</title>
+  <title>SIPENA FEB</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,88 +15,170 @@
   <!-- ========================= -->
   <!-- VIEW: SPLASH SCREEN (SCR-M01) -->
   <!-- ========================= -->
-  <div id="splash-view" class="view-container active bg-navy flex-center flex-col">
-    <div class="splash-logo-box">
-      <span class="material-icons" style="font-size: 80px; color: #F5C518;">school</span>
-      <h1 class="text-white mt-3" style="font-size: 24px; font-weight: 800; letter-spacing: 2px;">UNSAP</h1>
-      <p class="text-light-gray" style="font-size: 14px;">FAKULTAS EKONOMI & BISNIS</p>
+  <div id="splash-view" class="view-container active splash-bg flex-col flex-center" style="position: relative; justify-content: center;">
+    <div class="auth-ornament" style="width: 300px; height: 60px; top: -20px; left: -50px;"></div>
+    <div class="auth-ornament" style="width: 250px; height: 50px; top: 80px; left: -100px;"></div>
+    <div class="auth-ornament" style="width: 400px; height: 80px; top: 250px; left: 150px;"></div>
+    <div class="auth-ornament" style="width: 200px; height: 40px; top: 350px; left: 250px;"></div>
+    <div class="auth-ornament" style="width: 300px; height: 60px; top: 600px; left: -50px;"></div>
+    
+    <div style="text-align: center; z-index: 10;">
+      <div style="margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+        <img src="/logo_final.png" alt="SIPENA FEB Logo" style="width: 280px; object-fit: contain;">
+      </div>
+      <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 16px;">Fakultas Ekonomi & Bisnis</p>
     </div>
     
-    <div class="splash-loader mt-5">
-      <div class="progress-bar-container" style="width: 200px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
-        <div class="progress-fill" id="splash-progress" style="width: 0%; height: 100%; background: #F5C518; transition: width 0.3s;"></div>
+    <div style="position: absolute; bottom: 40px; width: 100%; padding: 0 32px; z-index: 10;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px; color: rgba(255,255,255,0.7); font-size: 12px;">
+        <span id="splash-text">Menginisialisasi sistem...</span>
+        <span id="splash-percentage">3%</span>
       </div>
-      <p class="text-light-gray mt-2 text-center" style="font-size: 12px;" id="splash-text">Menginisialisasi sistem...</p>
+      <div class="progress-bar-container" style="width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; margin-bottom: 24px;">
+        <div class="progress-fill" id="splash-progress" style="width: 3%; height: 100%; background: white; transition: width 0.3s;"></div>
+      </div>
+      
+      <div class="glass-panel" style="padding: 16px;">
+        <div class="glass-check-item">
+          <span class="material-icons" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+          <span style="flex: 1; font-size: 13px;">Firebase SDK</span>
+          <span class="material-icons" id="splash-spinner" style="font-size: 14px; animation: spin 2s linear infinite;">refresh</span>
+        </div>
+        <div class="glass-check-item">
+          <span class="material-icons" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+          <span style="flex: 1; font-size: 13px;">Koneksi Internet</span>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 16px; font-size: 10px; color: rgba(255,255,255,0.4);">v1.0.0</div>
     </div>
-    <div style="position: absolute; bottom: 20px; font-size: 10px; color: rgba(255,255,255,0.5);">v1.0.0 · Web iOS Edition</div>
   </div>
 
   <!-- ========================= -->
   <!-- VIEW: SECURITY INTEGRITY (SCR-M02) -->
   <!-- ========================= -->
-  <div id="security-view" class="view-container bg-navy text-white px-4 py-8 flex-col">
-    <div class="text-center mt-5 mb-5">
-      <span class="material-icons text-yellow" style="font-size: 64px;">security</span>
-      <h2 class="mt-3">PEMERIKSAAN KEAMANAN</h2>
-      <p class="text-light-gray mt-2" style="font-size: 14px;">Sistem sedang memverifikasi integritas perangkat Anda...</p>
+  <div id="security-view" class="view-container splash-bg flex-col" style="position: relative;">
+    <div class="auth-ornament" style="width: 300px; height: 60px; top: -20px; left: -50px;"></div>
+    <div class="auth-ornament" style="width: 250px; height: 50px; top: 80px; left: -100px;"></div>
+    <div class="auth-ornament" style="width: 400px; height: 80px; top: 250px; left: 150px;"></div>
+    <div class="auth-ornament" style="width: 200px; height: 40px; top: 350px; left: 250px;"></div>
+    <div class="auth-ornament" style="width: 300px; height: 60px; top: 600px; left: -50px;"></div>
+    
+    <div style="text-align: center; margin-top: 60px; z-index: 10; padding: 0 24px;">
+      <h2 style="color: white; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <span class="material-icons text-yellow" style="font-size: 24px;">lock</span> PEMERIKSAAN KEAMANAN
+      </h2>
+      <p style="color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 8px;">Sistem sedang memverifikasi integritas perangkat Anda...</p>
     </div>
 
-    <div class="security-checklist bg-white rounded-lg p-4" style="color: #1e293b;">
-      <ul style="list-style: none; padding: 0; margin: 0;">
-        <li class="flex items-center mb-3" id="sec-check-1">
-          <span class="material-icons text-gray-400 mr-2" id="sec-icon-1" style="font-size: 20px;">radio_button_unchecked</span>
-          <div>
-            <div style="font-weight: 600; font-size: 14px;">Jailbreak / Web Inspector</div>
-            <div style="font-size: 12px; color: #64748b;" id="sec-desc-1">Menunggu...</div>
-          </div>
-        </li>
-        <li class="flex items-center mb-3" id="sec-check-2">
-          <span class="material-icons text-gray-400 mr-2" id="sec-icon-2" style="font-size: 20px;">radio_button_unchecked</span>
-          <div>
-            <div style="font-weight: 600; font-size: 14px;">VPN / Proxy Terlarang</div>
-            <div style="font-size: 12px; color: #64748b;" id="sec-desc-2">Menunggu...</div>
-          </div>
-        </li>
-        <li class="flex items-center" id="sec-check-3">
-          <span class="material-icons text-gray-400 mr-2" id="sec-icon-3" style="font-size: 20px;">radio_button_unchecked</span>
-          <div>
-            <div style="font-weight: 600; font-size: 14px;">Screen Recording</div>
-            <div style="font-size: 12px; color: #64748b;" id="sec-desc-3">Menunggu...</div>
-          </div>
-        </li>
-      </ul>
+    <div style="flex: 1; display: flex; align-items: center; justify-content: center; z-index: 10;">
+      <div class="glass-panel" style="padding: 40px 30px; border-radius: 30px;">
+        <div style="display: flex; align-items: center; justify-content: center; position: relative; padding: 10px;">
+           <span class="material-icons" style="font-size: 80px; color: #f59e0b;">security</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 0 24px 40px 24px; z-index: 10;">
+      <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin-bottom: 12px;">Checklist Keamanan:</p>
+      <div class="glass-panel" style="padding: 16px;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li class="glass-check-item" id="sec-check-1">
+            <span class="material-icons" id="sec-icon-1" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">Root / Jailbreak</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.5);" id="sec-desc-1">Menunggu...</div>
+            </div>
+          </li>
+          <li class="glass-check-item" id="sec-check-2">
+            <span class="material-icons" id="sec-icon-2" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">Custom ROM</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.5);" id="sec-desc-2">Menunggu...</div>
+            </div>
+          </li>
+          <li class="glass-check-item" id="sec-check-3">
+            <span class="material-icons" id="sec-icon-3" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">Developer Options</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.5);" id="sec-desc-3">Menunggu...</div>
+            </div>
+          </li>
+          <li class="glass-check-item" id="sec-check-4">
+            <span class="material-icons" id="sec-icon-4" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">USB Debugging</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.5);" id="sec-desc-4">Menunggu...</div>
+            </div>
+          </li>
+          <li class="glass-check-item" id="sec-check-5" style="margin-bottom: 0;">
+            <span class="material-icons" id="sec-icon-5" style="color: rgba(255,255,255,0.4); margin-right: 12px;">radio_button_unchecked</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">Aplikasi Kloningan</div>
+              <div style="font-size: 10px; color: rgba(255,255,255,0.5);" id="sec-desc-5">Menunggu...</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-top: 16px; color: rgba(255,255,255,0.7); font-size: 12px;">
+        <span>Pemeriksaan keamanan...</span>
+        <span id="sec-percentage">22%</span>
+      </div>
+      <div class="progress-bar-container" style="width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; margin-top: 8px;">
+        <div class="progress-fill" id="sec-progress" style="width: 22%; height: 100%; background: white; transition: width 0.3s;"></div>
+      </div>
     </div>
   </div>
 
   <!-- ========================= -->
-  <!-- VIEW: LOGIN (Unchanged mostly) -->
+  <!-- VIEW: LOGIN -->
   <!-- ========================= -->
-  <div id="login-view" class="view-container">
+  <div id="login-view" class="view-container login-bg flex-col" style="position: relative;">
+    <div class="auth-ornament" style="width: 300px; height: 60px; top: -20px; left: -50px;"></div>
+    <div class="auth-ornament" style="width: 250px; height: 50px; top: 80px; left: -100px;"></div>
+    <div class="auth-ornament" style="width: 400px; height: 80px; top: 250px; left: 150px;"></div>
+    <div class="auth-ornament" style="width: 200px; height: 40px; top: 350px; left: 250px;"></div>
+    
     <div class="login-header">
-      <div class="login-logo-placeholder">
-        <span class="material-icons" style="font-size: 64px; color: #F5C518;">school</span>
+      <div style="margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+        <img src="/logo_final.png" alt="SIPENA FEB Logo" style="width: 240px; object-fit: contain;">
       </div>
-      <h1 class="login-title text-yellow">UNSAP</h1>
-      <p class="login-subtitle">Aplikasi Ujian Mahasiswa</p>
+      <p class="login-subtitle" style="margin-top: 16px;">Masuk dengan akun mahasiswa</p>
     </div>
-    <div class="login-form-container">
-      <div class="login-card">
-        <h2 class="card-title">Masuk ke Akun Anda</h2>
-        <div class="input-group">
-          <label>NIM</label>
-          <div class="input-wrapper">
-            <span class="material-icons">person</span>
-            <input type="text" id="input-nim" placeholder="Masukkan NIM">
-          </div>
+    
+    <div class="login-bottom-sheet">
+      <h2 style="font-size: 20px; font-weight: 800; color: #0F172A; margin-bottom: 24px;">Masuk</h2>
+      
+      <div class="input-group">
+        <label style="color: #0F172A; font-weight: 700; font-size: 13px;">NIM <span style="font-weight: 400; color: #64748B;">(Nomor Induk Mahasiswa)</span></label>
+        <div class="input-wrapper" style="border: 1px solid #E2E8F0; padding: 14px 16px; border-radius: 12px;">
+          <input type="text" id="input-nim" placeholder="Contoh: 2024010001" style="width: 100%; border: none; outline: none; color: #0F172A;">
         </div>
-        <div class="input-group">
-          <label>Tanggal Lahir</label>
-          <div class="input-wrapper">
-            <span class="material-icons">calendar_today</span>
-            <input type="text" id="input-dob" placeholder="DDMMYYYY">
-          </div>
+      </div>
+      
+      <div class="input-group" style="margin-top: 16px;">
+        <label style="color: #0F172A; font-weight: 700; font-size: 13px;">Tanggal Lahir <span style="font-weight: 400; color: #64748B;">(Password)</span></label>
+        <div class="input-wrapper" style="border: 1px solid #E2E8F0; padding: 14px 16px; border-radius: 12px; display: flex; align-items: center;">
+          <input type="text" id="input-dob" placeholder="DD / MM / YYYY" style="width: 100%; border: none; outline: none; color: #0F172A;">
+          <span class="material-icons" style="color: #94A3B8;">calendar_today</span>
         </div>
-        <button class="btn-primary w-full mt-4" onclick="handleLogin()">MASUK</button>
+      </div>
+      
+      <button class="btn-gold-gradient" style="margin-top: 24px;" onclick="handleLogin()">MASUK</button>
+      
+      <div style="text-align: center; margin-top: 16px;">
+        <a href="#" style="color: #64748B; font-size: 12px; text-decoration: none;">Lupa akun? Hubungi Admin</a>
+      </div>
+      
+      <div class="auth-badge-row">
+        <div class="auth-badge">
+          <span class="material-icons" style="font-size: 14px;">lock_outline</span>
+          Koneksi terenkripsi
+        </div>
+        <div class="auth-badge">
+          <span class="material-icons" style="font-size: 14px;">check_circle</span>
+          Perangkat terverifikasi
+        </div>
       </div>
     </div>
   </div>
@@ -158,42 +240,71 @@
     
     <!-- TAB: HOME -->
     <div id="tab-home" class="tab-content active">
-      <!-- Top Navy Section -->
-      <div class="top-navy-bg">
+      <!-- Top Gradient Section -->
+      <div class="top-gradient-bg">
         <!-- Profile Header -->
-        <div class="profile-header-row">
-          <div class="avatar-box">AF</div>
-          <div class="profile-text">
-            <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
-            <p>2024010001</p>
+        <div class="profile-header-row" style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center;">
+            <div class="avatar-box" style="background: rgba(255,255,255,0.2); border: 2px solid white;">
+              <span class="material-icons" style="color: white; font-size: 32px;">person</span>
+            </div>
+            <div class="profile-text" style="margin-left: 12px;">
+              <h3 style="font-size: 20px; font-weight: 800;">Hi, Ahmad Fauzi</h3>
+              <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px;">Temukan Jadwal Ujian Anda</p>
+            </div>
           </div>
-          <div class="bell-icon" onclick="openNotifModal()"><span class="material-icons">notifications_none</span></div>
+          <div class="bell-icon" onclick="openNotifModal()" style="background: transparent; border: none; width: auto; height: auto;">
+            <span class="material-icons" style="font-size: 28px;">notifications_none</span>
+          </div>
         </div>
         
-        <!-- 3 Stat Cards -->
-        <div class="stat-cards-row">
-          <div class="stat-card">
-            <h2 class="text-green">5</h2>
-            <p>Berlangsung</p>
+        <!-- Ayo Kejar Prestasimu Card -->
+        <div style="background: white; border-radius: 24px; padding: 32px 16px; margin-top: 24px; margin-bottom: -80px; box-shadow: 0 16px 30px rgba(0,0,0,0.08); color: #1e293b; position: relative; z-index: 10;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 32px;">
+            <div style="width: 32px; height: 32px; border-radius: 16px; background: #f59e0b; display: flex; align-items: center; justify-content: center;">
+              <span class="material-icons" style="color: white; font-size: 20px;">star</span>
+            </div>
+            <h3 style="font-size: 20px; font-weight: 800; color: #1e293b; margin: 0; letter-spacing: -0.5px;">Ayo Kejar Prestasimu!</h3>
+            <span class="material-icons text-orange" style="font-size: 28px;">school</span>
           </div>
-          <div class="stat-card">
-            <h2 class="text-orange">5</h2>
-            <p>Belum Dimulai</p>
-          </div>
-          <div class="stat-card">
-            <h2 class="text-gray">0</h2>
-            <p>Selesai</p>
+          <div style="display: flex; justify-content: space-around; text-align: center;">
+            <div style="flex: 1;">
+              <div style="width: 48px; height: 48px; border-radius: 24px; background: #22c55e; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+                <span class="material-icons" style="color: white; font-size: 28px;">play_arrow</span>
+              </div>
+              <h2 style="font-size: 26px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">5</h2>
+              <p style="font-size: 14px; color: #64748b; font-weight: 500; margin: 0;">Berlangsung</p>
+            </div>
+            <div style="flex: 1;">
+              <div style="width: 48px; height: 48px; border-radius: 24px; background: #f59e0b; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+                <span class="material-icons" style="color: white; font-size: 28px;">schedule</span>
+              </div>
+              <h2 style="font-size: 26px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">5</h2>
+              <p style="font-size: 14px; color: #64748b; font-weight: 500; margin: 0;">Menunggu</p>
+            </div>
+            <div style="flex: 1;">
+              <div style="width: 48px; height: 48px; border-radius: 24px; background: #3b82f6; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+                <span class="material-icons" style="color: white; font-size: 28px;">check</span>
+              </div>
+              <h2 style="font-size: 26px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">0</h2>
+              <p style="font-size: 14px; color: #64748b; font-weight: 500; margin: 0;">Selesai</p>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Content Area -->
-      <div class="dashboard-body light-bg">
+      <div class="dashboard-body light-bg" style="padding-top: 100px;">
+        <!-- Chips Scroll -->
+        <div class="chips-scroll" style="margin-top: 0; margin-bottom: 24px; display: flex; gap: 20px; overflow-x: auto; padding-bottom: 8px; align-items: center;">
+          <div style="background: #0f172a; color: white; padding: 16px 36px; border-radius: 30px; font-weight: 800; font-size: 15px; white-space: nowrap; letter-spacing: 0.5px;">Semua</div>
+          <div style="color: #94a3b8; padding: 16px 12px; font-weight: 500; font-size: 15px; white-space: nowrap;">Hari Ini</div>
+          <div style="color: #94a3b8; padding: 16px 12px; font-weight: 500; font-size: 15px; white-space: nowrap;">Mendatang</div>
+          <div style="color: #94a3b8; padding: 16px 12px; font-weight: 500; font-size: 15px; white-space: nowrap;">Selesai</div>
+        </div>
+
         <div class="section-header-row">
-          <h3 class="section-title">Ujian Hari Ini</h3>
-          <button class="btn-filter-pill" onclick="openFilterModal()">
-            <span class="material-icons">tune</span> Filter
-          </button>
+          <h3 class="section-title">Daftar Ujian</h3>
         </div>
 
         <!-- Exam Card: Terlambat -->
@@ -252,243 +363,162 @@
       </div>
     </div>
 
-    <!-- TAB: UJIAN -->
-    <div id="tab-ujian" class="tab-content">
-      <div class="top-navy-bg">
-        <div class="profile-header-row">
-          <div class="avatar-box">AF</div>
-          <div class="profile-text">
-            <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
-            <p>2024010001</p>
-          </div>
-          <div class="bell-icon" onclick="openNotifModal()"><span class="material-icons">notifications_none</span></div>
-        </div>
 
-        <div class="ujian-title-area mt-4">
-          <p class="subtitle text-light-gray">Semua Jadwal Ujian</p>
-          <h2 class="title-large"><span class="material-icons text-white">assignment</span> Daftar Ujian</h2>
-        </div>
-
-        <div class="status-pills-row mt-3">
-          <div class="pill-dark"><span class="dot green"></span> <b>5</b> Berlangsung</div>
-          <div class="pill-dark"><span class="dot orange"></span> <b>5</b> Menunggu</div>
-          <div class="pill-dark"><span class="dot blue"></span> <b>0</b> Selesai</div>
-        </div>
-      </div>
-
-      <div class="dashboard-body light-bg">
-        <!-- Chips -->
-        <div class="chips-scroll">
-          <div class="chip active">Semua</div>
-          <div class="chip">Hari Ini</div>
-          <div class="chip">Mendatang</div>
-          <div class="chip">Selesai</div>
-        </div>
-
-        <!-- Same Exam Cards as Home for demo -->
-        <div class="exam-card border-red mt-3">
-          <div class="exam-card-header">
-            <div class="exam-icon-box bg-red-light text-red">H-0</div>
-            <div class="exam-title-area">
-              <h4>Akuntansi Manajemen</h4>
-              <p>AKT301 · 3 SKS</p>
-            </div>
-            <div class="status-pill pill-red">TERLAMBAT</div>
-          </div>
-          <div class="exam-card-info">
-            <div class="info-left">
-              <p><span class="material-icons">work</span> Akuntansi · Semester 4</p>
-              <p><span class="material-icons">meeting_room</span> Reguler A | Ruang: Ruang A101</p>
-            </div>
-            <div class="info-right">
-              <p><span class="material-icons">schedule</span> Jam Ujian</p>
-              <h4>08:00 - 10:00 WIB</h4>
-            </div>
-          </div>
-          <div class="alert-box alert-red">
-            <span class="material-icons">lock</span>
-            <div class="alert-text">
-              <strong>Akses Dikunci - Terlambat 18 menit</strong>
-              <span>Diperlukan kode dari pengawas untuk masuk.</span>
-            </div>
-          </div>
-          <button class="btn-full btn-red mt-3"><span class="material-icons">lock_open</span> Gunakan Kode Pengawas</button>
-        </div>
-
-        <div class="exam-card border-green mt-4">
-          <div class="exam-card-header">
-            <div class="exam-icon-box bg-green-light text-green">H-0</div>
-            <div class="exam-title-area">
-              <h4>Statistika Bisnis</h4>
-              <p>STB202 · 3 SKS</p>
-            </div>
-            <div class="status-pill pill-green">BERLANGSUNG</div>
-          </div>
-          <div class="exam-card-info">
-            <div class="info-left">
-              <p><span class="material-icons">work</span> Akuntansi · Semester 4</p>
-              <p><span class="material-icons">meeting_room</span> Reguler A | Ruang: Ruang A101</p>
-            </div>
-            <div class="info-right">
-              <p><span class="material-icons">schedule</span> Jam Ujian</p>
-              <h4>10:00 - 12:00 WIB</h4>
-            </div>
-          </div>
-          <button class="btn-full btn-navy mt-3" onclick="startExam()"><span class="material-icons">lock_open</span> MULAI UJIAN</button>
-        </div>
-        
-        <div class="exam-card border-orange mt-4">
-          <div class="exam-card-header">
-            <div class="exam-icon-box bg-orange-light text-orange">H-0</div>
-            <div class="exam-title-area">
-              <h4>Ekonomi Mikro</h4>
-              <p>EKM201 · 3 SKS</p>
-            </div>
-            <div class="status-pill pill-orange">BELUM DIMULAI</div>
-          </div>
-        </div>
-        <br><br>
-      </div>
-    </div>
 
     <!-- TAB: RIWAYAT -->
-    <div id="tab-riwayat" class="tab-content">
-      <div class="top-navy-bg">
-        <div class="profile-header-row">
-          <div class="avatar-box">AF</div>
-          <div class="profile-text">
-            <h3>Ahmad Fauzi <span class="tag-gold">Akuntansi · Sem 4</span></h3>
-            <p>2024010001</p>
+    <div id="tab-riwayat" class="tab-content" style="background-color: #F8FAFC; min-height: 100vh;">
+      <div class="top-gradient-bg" style="border-radius: 0 0 40px 40px; padding: 70px 24px 30px 24px;">
+        <div class="profile-header-row" style="flex-direction: column; align-items: flex-start; margin-bottom: 24px;">
+          <p style="font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 4px; letter-spacing: 0.5px;">Pallyama Sultan · 2024010001</p>
+          <h2 class="title-large" style="font-size: 22px; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+            📊 Riwayat Ujian
+          </h2>
+        </div>
+        
+        <!-- Summary Bar (Inside colored background) -->
+        <div style="background: white; border-radius: 24px; padding: 16px; box-shadow: 0 12px 32px rgba(0,0,0,0.06); display: flex; gap: 12px; position: relative; z-index: 10;">
+          <!-- Rata-rata -->
+          <div style="flex: 1; background: #F8FAFC; border: 1px solid rgba(0,0,0,0.02); border-radius: 16px; padding: 20px 4px; text-align: center;">
+            <h3 style="color: #16A34A; font-size: 26px; font-weight: 800; margin: 0 0 6px 0;">78</h3>
+            <p style="color: #94A3B8; font-size: 10px; font-weight: 500; margin: 0; line-height: 1.4;">Rata-rata<br>nilai</p>
           </div>
-          <div class="bell-icon" onclick="openNotifModal()"><span class="material-icons">notifications_none</span></div>
+          <!-- Terkumpul -->
+          <div style="flex: 1; background: #F8FAFC; border: 1px solid rgba(0,0,0,0.02); border-radius: 16px; padding: 20px 4px; text-align: center;">
+            <h3 style="color: #F59E0B; font-size: 26px; font-weight: 800; margin: 0 0 6px 0;">4</h3>
+            <p style="color: #94A3B8; font-size: 10px; font-weight: 500; margin: 0; line-height: 1.4;">Terkumpul<br>ujian</p>
+          </div>
+          <!-- Bersih -->
+          <div style="flex: 1; background: #F8FAFC; border: 1px solid rgba(0,0,0,0.02); border-radius: 16px; padding: 20px 4px; text-align: center;">
+            <h3 style="color: #3B82F6; font-size: 26px; font-weight: 800; margin: 0 0 6px 0;">2</h3>
+            <p style="color: #94A3B8; font-size: 10px; font-weight: 500; margin: 0; line-height: 1.4;">Bersih<br>tanpa pelanggaran</p>
+          </div>
         </div>
-        <div class="ujian-title-area mt-4">
-          <p class="subtitle text-light-gray">Ahmad Fauzi · 2024010001</p>
-          <h2 class="title-large"><span class="material-icons text-white">bar_chart</span> Riwayat Ujian</h2>
-        </div>
-        <button class="btn-outline-white mt-3" onclick="openSemesterModal()" id="btn-semester-riwayat">Semua Semester <span class="material-icons">expand_more</span></button>
       </div>
-      <div class="dashboard-body light-bg">
-        <div class="stat-cards-row-white mb-4">
-          <div class="stat-card-white">
-            <h2 class="text-green">78</h2>
-            <p>Rata-rata nilai</p>
-          </div>
-          <div class="stat-card-white">
-            <h2 class="text-green">4</h2>
-            <p>Terkumpul ujian</p>
-          </div>
-          <div class="stat-card-white">
-            <h2 class="text-blue">2</h2>
-            <p>Bersih tanpa pelanggaran</p>
+      
+      <div class="dashboard-body light-bg" style="padding: 24px 24px 120px 24px;">
+
+        <!-- History List Cards -->
+        <div style="background: white; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); margin-bottom: 16px; overflow: hidden; padding-top: 4px;">
+          <div style="height: 4px; background: #22C55E; border-radius: 4px; margin: 0 8px;"></div>
+          <div style="padding: 20px; display: flex; align-items: center; gap: 16px;">
+            <div style="width: 56px; height: 56px; border-radius: 28px; background: white; border: 1.5px solid #22C55E; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <span style="color: #16A34A; font-size: 18px; font-weight: 800;">78</span>
+            </div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 800; color: #0F172A; margin: 0 0 4px 0;">Akuntansi Manajemen</h4>
+              <p style="font-size: 12px; color: #94A3B8; margin: 0 0 8px 0;">AKT301 · Semester 4</p>
+              <p style="font-size: 11px; color: #64748B; font-weight: 500; margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span class="material-icons" style="font-size: 14px; color: #94A3B8;">calendar_today</span> 14 Juni 2026
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="history-list-card">
-          <div class="score-circle">78</div>
-          <div class="history-list-info">
-            <h4>Akuntansi Manajemen</h4>
-            <p>AKT301 · Semester 4</p>
-            <p class="date"><span class="material-icons">event</span> 14 Juni 2026</p>
-          </div>
-        </div>
-
-        <div class="history-list-card mt-3">
-          <div class="score-circle">85</div>
-          <div class="history-list-info">
-            <h4>Statistika Bisnis</h4>
-            <p>STB202 · Semester 4</p>
-            <p class="date"><span class="material-icons">event</span> 12 Juni 2026</p>
+        <div style="background: white; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); margin-bottom: 16px; overflow: hidden; padding-top: 4px;">
+          <div style="height: 4px; background: #22C55E; border-radius: 4px; margin: 0 8px;"></div>
+          <div style="padding: 20px; display: flex; align-items: center; gap: 16px;">
+            <div style="width: 56px; height: 56px; border-radius: 28px; background: white; border: 1.5px solid #22C55E; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <span style="color: #16A34A; font-size: 18px; font-weight: 800;">85</span>
+            </div>
+            <div>
+              <h4 style="font-size: 16px; font-weight: 800; color: #0F172A; margin: 0 0 4px 0;">Statistika Bisnis</h4>
+              <p style="font-size: 12px; color: #94A3B8; margin: 0 0 8px 0;">STB202 · Semester 4</p>
+              <p style="font-size: 11px; color: #64748B; font-weight: 500; margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span class="material-icons" style="font-size: 14px; color: #94A3B8;">calendar_today</span> 12 Juni 2026
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- TAB: PROFIL -->
-    <div id="tab-profile" class="tab-content">
-      <div class="top-navy-bg">
-        <div class="profile-header-row justify-between">
+    <div id="tab-profile" class="tab-content" style="background-color: #F8FAFC;">
+      <div class="top-gradient-bg" style="border-radius: 0 0 32px 32px; padding-bottom: 28px;">
+        <div class="profile-header-row justify-between" style="padding-top: 18px;">
           <div class="flex-row">
-            <div class="avatar-box large">AF</div>
-            <div class="profile-text mt-2">
-              <h2 class="title-large mb-1">Ahmad Fauzi</h2>
-              <p>NIM: 2024010001</p>
-              <div class="tags-row mt-2">
-                <span class="tag-green">Aktif</span>
-                <span class="tag-dark">Akuntansi · Sem 4</span>
+            <div class="avatar-box large" style="width: 66px; height: 66px; border-radius: 33px; background: rgba(255,255,255,0.2); border: 2.5px solid white;">
+              <span class="material-icons" style="color: white; font-size: 40px;">person</span>
+            </div>
+            <div class="profile-text mt-2" style="margin-left: 16px;">
+              <h2 class="title-large mb-1" style="font-size: 20px;">Hi, Pallyama Sultan</h2>
+              <p style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px;">NIM: 2024010001</p>
+              <div class="tags-row mt-2" style="margin-top: 8px;">
+                <span class="tag-green" style="background: rgba(34, 197, 94, 0.18); border-color: rgba(34, 197, 94, 0.3); font-size: 9px; padding: 2px 8px;">Aktif</span>
+                <span class="tag-dark" style="background: transparent; border-color: rgba(255,255,255,0.3); font-size: 9px; padding: 2px 8px;">Akuntansi · Sem 4</span>
               </div>
             </div>
           </div>
-          <div class="bell-icon"><span class="material-icons">share</span></div>
         </div>
-        <div class="stat-cards-row-dark mt-4">
-          <div class="stat-card-dark">
-            <h2 class="text-yellow">7</h2>
-            <p>Ujian</p>
+        <div class="stat-cards-row-dark mt-4" style="display: flex; gap: 8px; margin-top: 24px;">
+          <div class="stat-card-dark" style="flex: 1; padding: 8px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.09);">
+            <h2 class="text-white" style="font-size: 16px;">7</h2>
+            <p style="font-size: 8px; color: rgba(255,255,255,0.4);">Ujian</p>
           </div>
-          <div class="stat-card-dark">
-            <h2 class="text-yellow">5</h2>
-            <p>Lulus</p>
+          <div class="stat-card-dark" style="flex: 1; padding: 8px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.09);">
+            <h2 class="text-white" style="font-size: 16px;">5</h2>
+            <p style="font-size: 8px; color: rgba(255,255,255,0.4);">Lulus</p>
           </div>
-          <div class="stat-card-dark">
-            <h2 class="text-yellow">81</h2>
-            <p>Rata-rata</p>
+          <div class="stat-card-dark" style="flex: 1; padding: 8px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.09);">
+            <h2 class="text-white" style="font-size: 16px;">81</h2>
+            <p style="font-size: 8px; color: rgba(255,255,255,0.4);">Rata-rata</p>
           </div>
-          <div class="stat-card-dark">
-            <h2 class="text-yellow">48</h2>
-            <p>SKS</p>
+          <div class="stat-card-dark" style="flex: 1; padding: 8px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.09);">
+            <h2 class="text-white" style="font-size: 16px;">48</h2>
+            <p style="font-size: 8px; color: rgba(255,255,255,0.4);">SKS</p>
           </div>
         </div>
       </div>
 
-      <div class="dashboard-body light-bg pb-20">
-        <div class="info-card mb-4">
-          <h4 class="info-title">INFORMASI AKADEMIK</h4>
-          <div class="info-row">
-            <div class="info-icon"><span class="material-icons">school</span></div>
+      <div class="dashboard-body light-bg" style="padding-bottom: 100px; padding-top: 16px;">
+        <div class="info-card mb-4" style="padding: 0; overflow: hidden; border: 1px solid #F1F5F9;">
+          <h4 class="info-title" style="padding: 12px 16px 8px 16px; margin: 0; border-bottom: 1px solid #F8FAFC; color: #94A3B8; font-size: 10px; font-weight: 700; letter-spacing: 1px;">INFORMASI AKADEMIK</h4>
+          <div class="info-row" style="padding: 12px 16px; margin: 0;">
+            <div class="info-icon" style="background: rgba(37,99,235,0.1); color: #2563EB; width: 36px; height: 36px;"><span class="material-icons" style="font-size: 18px;">school</span></div>
             <div class="info-text">
-              <h5>Program Studi</h5>
-              <p>S1 Akuntansi</p>
+              <h5 style="font-size: 13px;">Program Studi</h5>
+              <p style="font-size: 11px;">S1 Akuntansi</p>
             </div>
           </div>
-          <div class="info-row">
-            <div class="info-icon bg-purple"><span class="material-icons">calendar_today</span></div>
+          <div class="info-row" style="padding: 12px 16px; margin: 0;">
+            <div class="info-icon bg-purple" style="background: rgba(124,58,237,0.1); color: #7C3AED; width: 36px; height: 36px;"><span class="material-icons" style="font-size: 18px;">calendar_today</span></div>
             <div class="info-text">
-              <h5>Semester & Tahun</h5>
-              <p>Semester 4 · 2025/2026</p>
+              <h5 style="font-size: 13px;">Semester & Tahun</h5>
+              <p style="font-size: 11px;">Semester 4 · 2025/2026</p>
             </div>
           </div>
-          <div class="info-row">
-            <div class="info-icon bg-teal"><span class="material-icons">person</span></div>
+          <div class="info-row" style="padding: 12px 16px; margin: 0;">
+            <div class="info-icon bg-teal" style="background: rgba(8,145,178,0.1); color: #0891B2; width: 36px; height: 36px;"><span class="material-icons" style="font-size: 18px;">person</span></div>
             <div class="info-text">
-              <h5>Dosen Wali</h5>
-              <p>Dr. Hendra Kusuma, M.Ak</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-card mb-4">
-          <h4 class="info-title">INFORMASI AKUN</h4>
-          <div class="info-row">
-            <div class="info-icon bg-dark"><span class="material-icons">account_circle</span></div>
-            <div class="info-text">
-              <h5>Nama Lengkap</h5>
-              <p>Ahmad Fauzi</p>
-            </div>
-          </div>
-          <div class="info-row">
-            <div class="info-icon bg-gray"><span class="material-icons">badge</span></div>
-            <div class="info-text">
-              <h5>NIM</h5>
-              <p>2024010001</p>
+              <h5 style="font-size: 13px;">Dosen Wali</h5>
+              <p style="font-size: 11px;">Dr. Hendra Kusuma, M.Ak</p>
             </div>
           </div>
         </div>
 
-        <button class="btn-outline-red w-full" onclick="handleLogout()">
-          <span class="material-icons">logout</span> Keluar
-        </button>
-        <br><br>
+        <div class="info-card mb-4" style="padding: 0; overflow: hidden; border: 1px solid #F1F5F9;">
+          <h4 class="info-title" style="padding: 12px 16px 8px 16px; margin: 0; border-bottom: 1px solid #F8FAFC; color: #94A3B8; font-size: 10px; font-weight: 700; letter-spacing: 1px;">INFORMASI AKUN</h4>
+          <div class="info-row" style="padding: 12px 16px; margin: 0;">
+            <div class="info-icon bg-dark" style="background: rgba(238,145,8,0.1); color: #EE9108; width: 36px; height: 36px;"><span class="material-icons" style="font-size: 18px;">account_circle</span></div>
+            <div class="info-text">
+              <h5 style="font-size: 13px;">Nama Lengkap</h5>
+              <p style="font-size: 11px;">Pallyama Sultan</p>
+            </div>
+          </div>
+          <div class="info-row" style="padding: 12px 16px; margin: 0;">
+            <div class="info-icon bg-gray" style="background: rgba(71,85,105,0.1); color: #475569; width: 36px; height: 36px;"><span class="material-icons" style="font-size: 18px;">badge</span></div>
+            <div class="info-text">
+              <h5 style="font-size: 13px;">NIM</h5>
+              <p style="font-size: 11px;">2024010001</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 0 16px; margin-top: 24px;">
+          <button style="width: 100%; background: #FFF3F3; color: #DC2626; border: 1px solid #FECACA; padding: 16px; border-radius: 16px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="handleLogout()">
+            <span class="material-icons">logout</span> Keluar
+          </button>
+        </div>
       </div>
     </div>
 
@@ -498,10 +528,7 @@
         <span class="material-icons">home</span>
         <span>Home</span>
       </div>
-      <div class="nav-item" onclick="switchTab('ujian')" id="nav-item-ujian">
-        <span class="material-icons">receipt_long</span>
-        <span>Ujian</span>
-      </div>
+
       <div class="nav-item" onclick="switchTab('riwayat')" id="nav-item-riwayat">
         <span class="material-icons">history</span>
         <span>Riwayat</span>
@@ -513,45 +540,7 @@
     </nav>
   </div>
 
-  <!-- Filter Bottom Sheet Modal -->
-  <div id="filter-modal" class="bottom-sheet-overlay hidden" onclick="closeFilterModal()">
-    <div class="bottom-sheet" onclick="event.stopPropagation()">
-      <h3 class="sheet-title"><span class="material-icons">search</span> Filter Jadwal Ujian</h3>
-      <div class="sheet-body">
-        <div class="input-group">
-          <label>Program Studi</label>
-          <div class="select-wrapper">
-            <select class="custom-select">
-              <option>Semua Prodi</option>
-              <option>Akuntansi</option>
-            </select>
-          </div>
-        </div>
-        <div class="input-group">
-          <label>Semester</label>
-          <div class="select-wrapper">
-            <select class="custom-select">
-              <option>Semua Semester</option>
-              <option>Semester 4</option>
-            </select>
-          </div>
-        </div>
-        <div class="input-group">
-          <label>Kelas / Kelompok</label>
-          <div class="select-wrapper">
-            <select class="custom-select">
-              <option>Semua Kelas</option>
-              <option>Reguler A</option>
-            </select>
-          </div>
-        </div>
-        <div class="sheet-actions mt-4">
-          <button class="btn-outline-red flex-1" onclick="closeFilterModal()">Reset</button>
-          <button class="btn-navy flex-2" onclick="applyFilter()">Terapkan Filter</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Notification Bottom Sheet Modal -->
   <div id="notif-modal" class="bottom-sheet-overlay hidden" onclick="closeNotifModal()">

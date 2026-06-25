@@ -581,11 +581,10 @@ class _ShieldAnimationWidgetState extends State<_ShieldAnimationWidget>
                             0.7 + (0.3 * (0.5 - (0.5 - t).abs()) * 2);
                         return Opacity(
                           opacity: opacity,
-                          child: Image.asset(
-                            'assets/images/unsap_logo.png',
-                            width: 36,
-                            height: 36,
-                            fit: BoxFit.contain,
+                          child: const Icon(
+                            Icons.security,
+                            size: 36,
+                            color: Colors.white,
                           ),
                         );
                       },

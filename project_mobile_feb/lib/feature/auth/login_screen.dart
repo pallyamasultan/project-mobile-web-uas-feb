@@ -187,62 +187,21 @@ class _LoginScreenState extends State<LoginScreen>
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               // Logo
-                              Container(
-                                width: 100,
-                                height: 100,
-                                padding: const EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.05),
-                                      spreadRadius: 3,
-                                    ),
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 24,
-                                    ),
-                                  ],
-                                ),
+                              SizedBox(
+                                width: 240,
                                 child: Image.asset(
-                                  'assets/images/unsap_logo.png',
+                                  'assets/images/logo_final.png',
                                   fit: BoxFit.contain,
                                   errorBuilder: (context, error, stackTrace) {
                                     return const Icon(
                                       Icons.school,
-                                      size: 50,
-                                      color: Color(0xFF090722),
+                                      size: 80,
+                                      color: Colors.white,
                                     );
                                   },
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              // Title
-                              const Text(
-                                'UJIAN AKHIR SEMESTER',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 1,
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.symmetric(vertical: 4),
-                                width: 40,
-                                height: 1.5,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Colors.transparent,
-                                      Colors.white.withOpacity(0.6),
-                                      Colors.transparent,
-                                    ],
-                                  ),
-                                ),
-                              ),
                               Text(
                                 'Masuk dengan akun mahasiswa',
                                 style: TextStyle(

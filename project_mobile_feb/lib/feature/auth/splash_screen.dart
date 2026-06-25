@@ -222,79 +222,17 @@ class _SplashScreenState extends State<SplashScreen>
                         children: [
                           // Logo
                           SizedBox(
-                            width: 140,
-                            height: 140,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                // Outer glow
-                                Container(
-                                  width: 140,
-                                  height: 140,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: RadialGradient(
-                                      colors: [
-                                        Colors.white.withOpacity(0.3),
-                                        Colors.transparent,
-                                      ],
-                                      stops: const [0.0, 0.7],
-                                    ),
-                                  ),
-                                ),
-                                // Logo card (now a circular card with UNSAP logo)
-                                Container(
-                                  width: 110,
-                                  height: 110,
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.white.withOpacity(0.8),
-                                      width: 2,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.15),
-                                        blurRadius: 24,
-                                      ),
-                                    ],
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/unsap_logo.png',
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return const Icon(
-                                        Icons.school,
-                                        size: 50,
-                                        color: Color(0xFF090722),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 24),
-                          const Text(
-                            'UJIAN AKHIR SEMESTER',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Fakultas Ekonomi & Bisnis',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
-                              fontSize: 13,
-                              letterSpacing: 0.5,
+                            width: 280,
+                            child: Image.asset(
+                              'assets/images/logo_final.png',
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(
+                                  Icons.school,
+                                  size: 80,
+                                  color: Colors.white,
+                                );
+                              },
                             ),
                           ),
                         ],

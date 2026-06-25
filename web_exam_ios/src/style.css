@@ -78,7 +78,7 @@ body {
 .view-container {
   display: none !important;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 .view-container.active { display: block !important; }
 .view-container.active.flex-col,
@@ -87,19 +87,22 @@ body {
 .tab-content.active { display: block; }
 
 .light-bg {
-  background-color: var(--bg-light);
-  border-radius: 24px 24px 0 0;
+  background-color: #F8FAFC;
   min-height: calc(100vh - 200px);
-  padding: 24px 16px;
+  padding: 16px 16px 24px 16px;
 }
 
 /* =========================================================================
-   TOP NAVY SECTION
+   TOP NAVY SECTION (Now Gradient)
    ========================================================================= */
-.top-navy-bg {
-  background-color: var(--navy);
+.top-gradient-bg {
+  background: linear-gradient(135deg, #090722 0%, #B86B11 100%);
   color: white;
-  padding: 20px 16px 24px 16px;
+  padding: 20px 16px 40px 16px;
+  border-radius: 0 0 32px 32px;
+}
+#tab-home, #tab-riwayat, #tab-profile {
+  background-color: #F8FAFC;
 }
 .profile-header-row {
   display: flex;
@@ -108,18 +111,21 @@ body {
 }
 .avatar-box {
   width: 48px; height: 48px;
-  background: var(--yellow);
-  color: var(--navy);
-  border-radius: 12px;
+  background: var(--bg-light);
+  border-radius: 24px;
+  overflow: hidden;
   display: flex;
   align-items: center; justify-content: center;
-  font-weight: 800; font-size: 20px;
-  border: 2px solid rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.8);
+}
+.avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .avatar-box.large {
   width: 64px; height: 64px;
-  font-size: 24px;
-  border-radius: 16px;
+  border-radius: 32px;
 }
 .profile-text {
   flex: 1;
@@ -159,31 +165,34 @@ body {
   position: relative; z-index: 10;
 }
 
-/* Stat Cards in Navy Header */
+/* Stat Cards in Gradient Header */
 .stat-cards-row {
   display: flex; gap: 12px; margin-top: 24px;
 }
 .stat-card {
   flex: 1;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 12px; text-align: center;
+  background: white;
+  border-radius: 16px;
+  padding: 16px; text-align: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-main);
 }
 .stat-card h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
-.stat-card p { font-size: 11px; color: rgba(255,255,255,0.7); }
+.stat-card p { font-size: 11px; color: var(--text-slate); }
+.stat-card .material-icons { margin-bottom: 8px; font-size: 24px; }
 
 .stat-cards-row-dark {
   display: flex; gap: 8px;
 }
 .stat-card-dark {
   flex: 1;
-  background: var(--navy-light);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 12px;
   padding: 12px; text-align: center;
+  color: white;
 }
-.stat-card-dark h2 { font-size: 20px; font-weight: 800; }
+.stat-card-dark h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
 .stat-card-dark p { font-size: 10px; color: rgba(255,255,255,0.7); }
 
 .title-large {
@@ -236,17 +245,17 @@ body {
 
 /* Chips Scroll (Ujian) */
 .chips-scroll {
-  display: flex; gap: 12px; overflow-x: auto; margin-bottom: 16px;
+  display: flex; gap: 12px; overflow-x: auto; margin-bottom: 16px; margin-top: 16px;
   padding-bottom: 4px;
 }
 .chips-scroll::-webkit-scrollbar { display: none; }
 .chip {
-  padding: 6px 16px; border-radius: 20px;
+  padding: 8px 16px; border-radius: 20px;
   font-size: 13px; color: var(--text-light);
   white-space: nowrap; font-weight: 500;
 }
 .chip.active {
-  background: var(--navy); color: var(--yellow); font-weight: 700;
+  background: #090722; color: white; font-weight: 700;
 }
 
 /* =========================================================================
@@ -369,15 +378,18 @@ body {
    BOTTOM NAVIGATION
    ========================================================================= */
 .bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
+  position: fixed; bottom: 20px; left: 20px; right: 20px;
   background: white; display: flex; justify-content: space-around;
-  padding: 12px 0 20px 0; border-top: 1px solid var(--border); z-index: 100;
+  padding: 12px 16px; z-index: 100;
+  border-radius: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 .nav-item {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   color: var(--text-light); font-size: 10px; cursor: pointer;
+  padding: 4px;
 }
-.nav-item.active { color: var(--navy); font-weight: 700; }
+.nav-item.active { color: #090722; font-weight: 700; }
 .nav-item .material-icons { font-size: 24px; }
 
 /* =========================================================================
@@ -437,11 +449,94 @@ body {
 .semester-list li.active .check-icon { display: block; }
 
 /* =========================================================================
-   LOGIN & EXAM VIEWS (Simplified/Preserved)
+   AUTH VIEWS (Splash, Security, Login)
    ========================================================================= */
-.login-header { text-align: center; margin-top: 60px; margin-bottom: 40px; }
-.login-title { font-size: 32px; font-weight: 800; letter-spacing: 2px; }
-.login-subtitle { color: rgba(255,255,255,0.7); }
+.splash-bg {
+  background: linear-gradient(160deg, #090722 0%, #9c4c0b 45%, #e38307 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-bg {
+  background: #0B0A1A; /* Very dark background for login */
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-ornament {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 100px;
+  transform: rotate(-36deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+}
+
+.glass-check-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  color: white;
+}
+.glass-check-item:last-child { margin-bottom: 0; }
+
+.login-bottom-sheet {
+  background: white;
+  border-radius: 40px 40px 0 0;
+  padding: 32px 24px;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-gold-gradient {
+  background: linear-gradient(90deg, #161138 0%, #D47E09 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 16px;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(212, 126, 9, 0.3);
+}
+
+.auth-badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.auth-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: white;
+  border: 1px solid var(--green);
+  color: var(--green);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.login-header { text-align: center; margin-top: 60px; margin-bottom: 40px; position: relative; z-index: 10; }
+.login-title { font-size: 20px; font-weight: 800; letter-spacing: 2px; color: white; margin-top: 16px; }
+.login-subtitle { color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 4px; }
 .login-card { background: white; padding: 24px; border-radius: 24px; box-shadow: var(--shadow-md); margin: 0 24px; }
 .btn-primary { background: var(--yellow); color: var(--navy); border: none; padding: 16px; border-radius: 12px; font-weight: 800; font-size: 14px; }
 

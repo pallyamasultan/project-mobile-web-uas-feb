@@ -88,21 +88,23 @@ window.handleLogout = () => {
 
 // INITIALIZATION FLOW
 function initApp() {
-  // Start with splash screen
   navigateTo('splash');
   
-  // Simulate loading progress
-  let progress = 0;
+  let progress = 3;
   const progressFill = document.getElementById('splash-progress');
+  const percentageText = document.getElementById('splash-percentage');
+  const spinner = document.getElementById('splash-spinner');
   
   const interval = setInterval(() => {
-    progress += Math.random() * 20;
+    progress += Math.random() * 15;
     if (progress > 100) progress = 100;
+    
     if (progressFill) progressFill.style.width = `${progress}%`;
+    if (percentageText) percentageText.innerText = `${Math.floor(progress)}%`;
     
     if (progress === 100) {
       clearInterval(interval);
-      // Move to Security check
+      if (spinner) spinner.style.display = 'none';
       setTimeout(runSecurityCheck, 500);
     }
   }, 300);
@@ -111,10 +113,24 @@ function initApp() {
 function runSecurityCheck() {
   navigateTo('security');
   
+  let progress = 22;
+  const progressFill = document.getElementById('sec-progress');
+  const percentageText = document.getElementById('sec-percentage');
+  
+  const interval = setInterval(() => {
+    progress += Math.random() * 15;
+    if (progress > 100) progress = 100;
+    if (progressFill) progressFill.style.width = `${progress}%`;
+    if (percentageText) percentageText.innerText = `${Math.floor(progress)}%`;
+    if (progress === 100) clearInterval(interval);
+  }, 600);
+
   const checks = [
-    { id: 1, text: 'Aman', delay: 1000 },
-    { id: 2, text: 'Aman', delay: 2000 },
-    { id: 3, text: 'Aman', delay: 3000 }
+    { id: 1, text: 'Tidak Terdeteksi', delay: 1000 },
+    { id: 2, text: 'Tidak Terdeteksi', delay: 2000 },
+    { id: 3, text: 'Tidak Terdeteksi', delay: 3000 },
+    { id: 4, text: 'Tidak Terdeteksi', delay: 4000 },
+    { id: 5, text: 'Tidak Terdeteksi', delay: 5000 }
   ];
   
   checks.forEach(check => {
@@ -125,7 +141,7 @@ function runSecurityCheck() {
         desc.innerText = check.text;
         desc.style.color = '#22c55e';
         icon.innerText = 'check_circle';
-        icon.classList.replace('text-gray-400', 'text-green-500');
+        icon.style.color = '#22c55e';
       }
     }, check.delay);
   });
@@ -133,7 +149,7 @@ function runSecurityCheck() {
   // Finish security check and go to Login
   setTimeout(() => {
     navigateTo('login');
-  }, 4000);
+  }, 6000);
 }
 
 // ==========================================
@@ -141,23 +157,25 @@ function runSecurityCheck() {
 // ==========================================
 const tabs = {
   home: document.getElementById('tab-home'),
-  ujian: document.getElementById('tab-ujian'),
   riwayat: document.getElementById('tab-riwayat'),
   profile: document.getElementById('tab-profile')
 };
 
 const navItems = {
   home: document.getElementById('nav-item-home'),
-  ujian: document.getElementById('nav-item-ujian'),
   riwayat: document.getElementById('nav-item-riwayat'),
   profile: document.getElementById('nav-item-profile')
 };
 
 window.switchTab = (tabName) => {
-  // Hide all tabs
-  Object.values(tabs).forEach(tab => tab.classList.remove('active'));
+  // Hide all tabs gracefully (avoid null errors)
+  Object.values(tabs).forEach(tab => {
+    if (tab) tab.classList.remove('active');
+  });
   // Remove active state from nav items
-  Object.values(navItems).forEach(nav => nav.classList.remove('active'));
+  Object.values(navItems).forEach(nav => {
+    if (nav) nav.classList.remove('active');
+  });
 
   // Activate target tab
   if (tabs[tabName] && navItems[tabName]) {
@@ -166,16 +184,7 @@ window.switchTab = (tabName) => {
   }
 };
 
-// ==========================================
-// FILTER MODAL LOGIC
-// ==========================================
-window.openFilterModal = () => {
-  document.getElementById('filter-modal').classList.remove('hidden');
-};
 
-window.closeFilterModal = () => {
-  document.getElementById('filter-modal').classList.add('hidden');
-};
 
 // ==========================================
 // NOTIFICATION MODAL LOGIC
@@ -235,13 +244,7 @@ window.submitExam = () => {
   }, 500);
 };
 
-window.applyFilter = () => {
-  // Simulate delay
-  closeFilterModal();
-  setTimeout(() => {
-    alert('Filter Berhasil Diterapkan!');
-  }, 300);
-};
+
 
 // ==========================================
 // SEMESTER MODAL LOGIC (Riwayat)
