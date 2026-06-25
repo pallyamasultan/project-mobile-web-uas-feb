@@ -41,7 +41,7 @@ class _UjianPageState extends State<UjianPage> {
           height: 240,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFFF97316), Color(0xFFEA580C)],
+              colors: [Color(0xFF090722), Color(0xFFEE9108)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -59,41 +59,50 @@ class _UjianPageState extends State<UjianPage> {
                   child: Row(
                     children: [
                       Container(
-                        width: 48,
-                        height: 48,
+                        width: 50,
+                        height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 2),
+                          color: Colors.white.withOpacity(0.2),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/profile.jpg'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: const Icon(Icons.person, color: Colors.white),
                       ),
-                      const SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'Hi, Ahmad Fauzi',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      const SizedBox(width: 16),
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Hi, Pallyama Sultan',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Temukan Jadwal Ujian Anda',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.8),
-                              fontSize: 12,
+                            SizedBox(height: 4),
+                            Text(
+                              'Temukan Jadwal Ujian Anda',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 13,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      const Spacer(),
-                      IconButton(
-                        icon: const Icon(Icons.notifications_none, color: Colors.white),
-                        onPressed: () {},
+                      GestureDetector(
+                        onTap: () {},
+                        child: const Icon(
+                          Icons.notifications_none,
+                          color: Colors.white,
+                          size: 28,
+                        ),
                       ),
                     ],
                   ),
@@ -253,7 +262,7 @@ class _UjianPageState extends State<UjianPage> {
         margin: const EdgeInsets.only(right: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: active ? const Color(0xFFF97316) : Colors.transparent,
+          color: active ? const Color(0xFF090722) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
@@ -550,7 +559,7 @@ class _UjianPageState extends State<UjianPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isLate
                       ? const Color(0xFF991B1B)
-                      : const Color(0xFFF97316),
+                      : const Color(0xFF090722),
                   minimumSize: const Size(double.infinity, 44),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),

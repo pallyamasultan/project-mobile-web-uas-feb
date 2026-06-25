@@ -53,7 +53,7 @@ class _ExamScreenState extends State<ExamScreen> {
               widget.onBack(); // Go back to dashboard
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFF97316),
+              backgroundColor: const Color(0xFFEE9108),
             ),
             child: const Text(
               'Ya, Kumpulkan',
@@ -70,7 +70,7 @@ class _ExamScreenState extends State<ExamScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF97316),
+        backgroundColor: const Color(0xFF090722),
         leading: IconButton(
           icon: const Icon(Icons.exit_to_app, color: Colors.red),
           onPressed: () {
@@ -161,7 +161,7 @@ class _ExamScreenState extends State<ExamScreen> {
                           Container(
                             padding: const EdgeInsets.all(12),
                             decoration: const BoxDecoration(
-                              color: Color(0xFFF97316),
+                              color: Color(0xFF090722),
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(16),
                               ),
@@ -282,7 +282,7 @@ class _ExamScreenState extends State<ExamScreen> {
                         : null,
                     icon: const Icon(Icons.arrow_back_ios, size: 16),
                     color: _currentId > 1
-                        ? const Color(0xFFF97316)
+                        ? const Color(0xFFEE9108)
                         : Colors.grey,
                   ),
                   IconButton(
@@ -291,7 +291,7 @@ class _ExamScreenState extends State<ExamScreen> {
                         : null,
                     icon: const Icon(Icons.arrow_forward_ios, size: 16),
                     color: _currentId < _totalQuestions
-                        ? const Color(0xFFF97316)
+                        ? const Color(0xFFEE9108)
                         : Colors.grey,
                   ),
                   IconButton(
@@ -307,7 +307,7 @@ class _ExamScreenState extends State<ExamScreen> {
                   ElevatedButton(
                     onPressed: _submit,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF97316),
+                      backgroundColor: const Color(0xFFEE9108),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

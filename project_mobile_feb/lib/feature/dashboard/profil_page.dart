@@ -22,7 +22,7 @@ class ProfilPage extends StatelessWidget {
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             gradient: LinearGradient(
-              colors: [Color(0xFFF97316), Color(0xFFEA580C)],
+              colors: [Color(0xFF090722), Color(0xFFEE9108)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -36,42 +36,34 @@ class ProfilPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
-                children: [
-                  Container(
-                    width: 66,
-                    height: 66,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.55),
-                        width: 2.5,
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'AF',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Ahmad Fauzi',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          width: 66,
+                          height: 66,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2.5),
+                            color: Colors.white.withOpacity(0.2),
+                            image: const DecorationImage(
+                              image: AssetImage('assets/images/profile.jpg'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Hi, Pallyama Sultan',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                         const SizedBox(height: 2),
                         Text(
                           'NIM: 2024010001',
@@ -149,8 +141,8 @@ class ProfilPage extends StatelessWidget {
             _buildMenuRow(
               Icons.account_circle,
               'Nama Lengkap',
-              'Ahmad Fauzi',
-              const Color(0xFFF97316),
+              'Pallyama Sultan',
+              const Color(0xFFEE9108),
             ),
             _buildMenuRow(
               Icons.badge,

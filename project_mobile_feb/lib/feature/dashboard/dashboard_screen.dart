@@ -66,7 +66,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFF97316),
+                color: Color(0xFFEE9108),
               ),
             ),
             const SizedBox(height: 8),
@@ -86,7 +86,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFF97316),
+                  backgroundColor: const Color(0xFFEE9108),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -108,12 +108,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   void _updatePages() {
     _pages = [
-      _HomeTab(
-        prodi: _selectedProdi,
-        semester: _selectedSemester,
-        kelas: _selectedKelas,
-        onShowFilter: _showFilterBottomSheet,
-      ),
       UjianPage(
         prodi: _selectedProdi,
         semester: _selectedSemester,
@@ -232,7 +226,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFF97316),
+                            backgroundColor: const Color(0xFFEE9108),
                             padding: const EdgeInsets.symmetric(vertical: 14),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -308,24 +302,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Top Profile Header (visible except on Profil tab)
-    bool showHeader = _currentIndex != 3;
+    // Top Profile Header (visible only on Home tab)
+    bool showHeader = false;
 
     return Scaffold(
+      extendBody: true,
       backgroundColor: const Color(0xFFF1F5F9),
       body: Column(
         children: [
           if (showHeader)
             Container(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top + 10,
-                bottom: 14,
+                top: MediaQuery.of(context).padding.top + 20,
+                bottom: 20,
                 left: 16,
                 right: 16,
               ),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFFF97316), Color(0xFFEA580C)],
+                  colors: [Color(0xFF090722), Color(0xFFEE9108)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -347,9 +342,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     child: const Center(
                       child: Text(
-                        'AF',
+                        'PS',
                         style: TextStyle(
-                          color: Color(0xFFF97316),
+                          color: Color(0xFFEE9108),
                           fontSize: 14,
                           fontWeight: FontWeight.w800,
                         ),
@@ -364,7 +359,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Row(
                           children: [
                             const Text(
-                              'Ahmad Fauzi',
+                              'Pallyama Sultan',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -426,40 +421,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
           Expanded(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 250),
-              child: SizedBox(
-                key: ValueKey<int>(_currentIndex),
-                width: double.infinity,
-                height: double.infinity,
-                child: _pages[_currentIndex],
-              ),
+            child: SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: _pages[_currentIndex],
             ),
           ),
         ],
       ),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          boxShadow: [
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               blurRadius: 10,
-              offset: Offset(0, -2),
+              offset: Offset(0, 5),
             ),
           ],
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: _onItemTapped,
-          backgroundColor: Colors.white,
-          selectedItemColor: const Color(0xFFF97316),
-          unselectedItemColor: const Color(0xFF94A3B8),
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 10,
-          ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: _onItemTapped,
+            backgroundColor: Colors.white,
+            selectedItemColor: const Color(0xFF090722),
+            unselectedItemColor: const Color(0xFF94A3B8),
+            showUnselectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            elevation: 0,
+            selectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 10,
+            ),
           unselectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.normal,
             fontSize: 10,
@@ -469,11 +466,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               icon: Icon(Icons.home_outlined),
               activeIcon: Icon(Icons.home),
               label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.article_outlined),
-              activeIcon: Icon(Icons.article),
-              label: 'Ujian',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.history_outlined),
@@ -487,508 +479,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// ── Home Tab ────────────────────────────────────────────────────────────
-class _HomeTab extends StatelessWidget {
-  final String? prodi;
-  final String? semester;
-  final String? kelas;
-  final VoidCallback onShowFilter;
-
-  const _HomeTab({
-    this.prodi,
-    this.semester,
-    this.kelas,
-    required this.onShowFilter,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    List<ExamModel> filteredExams = dummyExams.where((e) {
-      if (prodi != null && e.prodi != prodi) return false;
-      if (semester != null && e.semester != semester) return false;
-      if (kelas != null && e.kelas != kelas) return false;
-      return true;
-    }).toList();
-
-    int berlangsung = filteredExams
-        .where((e) => e.status == 'BERLANGSUNG' || e.status == 'TERLAMBAT')
-        .length;
-    int belum = filteredExams.where((e) => e.status == 'BELUM DIMULAI').length;
-    int selesai = filteredExams.where((e) => e.status == 'SELESAI').length;
-
-    return ListView(
-      padding: const EdgeInsets.only(bottom: 80),
-      children: [
-        // Summary Cards
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              _buildStatCard(
-                'Berlangsung',
-                '$berlangsung',
-                const Color(0xFF22C55E),
-              ),
-              const SizedBox(width: 12),
-              _buildStatCard(
-                'Belum Dimulai',
-                '$belum',
-                const Color(0xFFF59E0B),
-              ),
-              const SizedBox(width: 12),
-              _buildStatCard('Selesai', '$selesai', const Color(0xFF94A3B8)),
-            ],
-          ),
         ),
-
-        // Exam List Header
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Ujian Hari Ini',
-                style: TextStyle(
-                  color: Color(0xFF0F172A),
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              GestureDetector(
-                onTap: onShowFilter,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: (prodi != null || semester != null || kelas != null)
-                        ? const Color(0xFFF97316)
-                        : Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFFF97316)),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.tune,
-                        size: 14,
-                        color:
-                            (prodi != null || semester != null || kelas != null)
-                            ? Colors.white
-                            : const Color(0xFFF97316),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Filter',
-                        style: TextStyle(
-                          color:
-                              (prodi != null ||
-                                  semester != null ||
-                                  kelas != null)
-                              ? Colors.white
-                              : const Color(0xFFF97316),
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        if (filteredExams.isEmpty)
-          const Padding(
-            padding: EdgeInsets.all(32.0),
-            child: Center(
-              child: Text(
-                'Tidak ada ujian untuk jadwal ini.',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-          )
-        else
-          ...filteredExams.map((e) {
-            Color statusColor = e.status == 'TERLAMBAT'
-                ? const Color(0xFFEF4444)
-                : e.status == 'BERLANGSUNG'
-                ? const Color(0xFF22C55E)
-                : const Color(0xFFF59E0B);
-            return _buildExamCard(
-              context,
-              e,
-              statusColor,
-              isLate: e.status == 'TERLAMBAT',
-            );
-          }).toList(),
-      ],
-    );
-  }
-
-  Widget _buildStatCard(String label, String value, Color color) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.08),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withOpacity(0.2)),
-        ),
-        child: Column(
-          children: [
-            Text(
-              value,
-              style: TextStyle(
-                color: color,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                color: color,
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildExamCard(
-    BuildContext context,
-    ExamModel exam,
-    Color statusColor, {
-    bool isLate = false,
-  }) {
-    bool isBerlangsung =
-        exam.status == 'BERLANGSUNG' || exam.status == 'TERLAMBAT';
-    return Container(
-      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 2)),
-        ],
-      ),
-      child: Column(
-        children: [
-          Container(
-            height: 3,
-            decoration: BoxDecoration(
-              gradient: isBerlangsung
-                  ? LinearGradient(
-                      colors: [
-                        statusColor,
-                        isLate ? Colors.redAccent : Colors.green,
-                      ],
-                    )
-                  : null,
-              color: isBerlangsung ? null : const Color(0xFFE2E8F0),
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(16),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            exam.subject,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            '${exam.code} · 3 SKS',
-                            style: const TextStyle(
-                              color: Color(0xFF64748B),
-                              fontSize: 11,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: statusColor.withOpacity(0.5)),
-                      ),
-                      child: Row(
-                        children: [
-                          if (isLate)
-                            const Icon(
-                              Icons.lock_outline,
-                              color: Colors.red,
-                              size: 10,
-                            ),
-                          if (isLate) const SizedBox(width: 4),
-                          Text(
-                            exam.status,
-                            style: TextStyle(
-                              color: statusColor,
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-
-                // Detailed Information
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF8FAFC),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: const Color(0xFFE2E8F0)),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.business_center,
-                                  size: 12,
-                                  color: Color(0xFF475569),
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  '${exam.prodi} · ${exam.semester}',
-                                  style: const TextStyle(
-                                    fontSize: 11,
-                                    color: Color(0xFF334155),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 6),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.meeting_room,
-                                  size: 12,
-                                  color: Color(0xFF475569),
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  '${exam.kelas} | Ruang: ${exam.room}',
-                                  style: const TextStyle(
-                                    fontSize: 11,
-                                    color: Color(0xFF334155),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 1,
-                        height: 30,
-                        color: const Color(0xFFCBD5E1),
-                        margin: const EdgeInsets.symmetric(horizontal: 12),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Row(
-                            children: [
-                              Icon(
-                                Icons.access_time,
-                                size: 12,
-                                color: Color(0xFF475569),
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                'Jam Ujian',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xFF64748B),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            exam.time,
-                            style: const TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0F172A),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                if (isBerlangsung) ...[
-                  if (isLate) ...[
-                    const SizedBox(height: 16),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.red.withOpacity(0.08),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.red.withOpacity(0.2)),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Icon(
-                            Icons.lock_outline,
-                            color: Colors.red,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Akses Dikunci — Terlambat 18 menit',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  'Diperlukan kode dari pengawas untuk masuk.',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (isLate) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LateEntryScreen(
-                              onBack: () => Navigator.pop(context),
-                              onEnter: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ExamScreen(
-                                      onBack: () {
-                                        Navigator.of(
-                                          context,
-                                        ).popUntil((route) => route.isFirst);
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ExamScreen(
-                              onBack: () {
-                                Navigator.of(
-                                  context,
-                                ).popUntil((route) => route.isFirst);
-                              },
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: isLate
-                          ? const Color(0xFF991B1B)
-                          : const Color(0xFFF97316),
-                      minimumSize: const Size(double.infinity, 44),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.zero,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          isLate ? Icons.lock_outline : Icons.lock_open,
-                          color: isLate
-                              ? Colors.white
-                              : Colors.white,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          isLate ? 'Gunakan Kode Pengawas' : 'MULAI UJIAN',
-                          style: TextStyle(
-                            color: isLate
-                                ? Colors.white
-                                : Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
